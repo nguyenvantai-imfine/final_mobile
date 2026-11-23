@@ -1,10 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
+    <!-- Màu thương hiệu chính của MoMo -->
+    <color name="momo_pink_primary">#FFD82D8B</color>      <!-- Hồng MoMo chủ đạo (Header, Button chính) -->
+    <color name="momo_pink_dark">#FFA50064</color>         <!-- Hồng đậm (Status bar, hiệu ứng nhấn/pressed) -->
+    <color name="momo_pink_light">#FFFDF2F8</color>        <!-- Hồng phấn cực nhạt (Nền highlight, thẻ ưu đãi) -->
+    <color name="momo_pink_border">#FFF9A8D4</color>       <!-- Viền hồng nhạt cho các khung thông báo -->
+
+    <!-- Màu nhấn & Trạng thái (Accents & Status) -->
+    <color name="momo_accent_yellow">#FFFFC107</color>     <!-- Vàng (Điểm thưởng, MoMo Xu, hạng thành viên) -->
+    <color name="momo_success_green">#FF10B981</color>     <!-- Xanh lá (Giao dịch thành công, tiền vào) -->
+    <color name="momo_error_red">#FFEF4444</color>         <!-- Đỏ (Thông báo lỗi, số dư không đủ) -->
+    <color name="momo_info_blue">#FF3B82F6</color>         <!-- Xanh dương (Liên kết ngân hàng, hướng dẫn) -->
+
+    <!-- Màu nền giao diện (Backgrounds) -->
+    <color name="bg_screen">#FFF5F6F8</color>              <!-- Xám nhạt làm nền tổng thể màn hình -->
+    <color name="bg_card">#FFFFFFFF</color>                <!-- Trắng tinh cho các khối Card chức năng -->
+    <color name="divider_gray">#FFE5E7EB</color>           <!-- Xám kẻ ngang phân cách các mục -->
+
+    <!-- Màu chữ (Typography) -->
+    <color name="text_primary">#FF1F2937</color>           <!-- Đen xám đậm (Tiêu đề, số tiền) -->
+    <color name="text_secondary">#FF6B7280</color>         <!-- Xám vừa (Mô tả phụ, thời gian giao dịch) -->
+    <color name="text_hint">#FF9CA3AF</color>              <!-- Xám nhạt (Placeholder ô nhập liệu) -->
+
+    <!-- Màu cơ bản (Giữ lại để tương thích theme mặc định) -->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 </resources>
