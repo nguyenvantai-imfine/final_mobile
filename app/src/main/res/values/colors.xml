@@ -1,28 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Màu thương hiệu chính của MoMo -->
-    <color name="momo_pink_primary">#FFD82D8B</color>      <!-- Hồng MoMo chủ đạo (Header, Button chính) -->
-    <color name="momo_pink_dark">#FFA50064</color>         <!-- Hồng đậm (Status bar, hiệu ứng nhấn/pressed) -->
-    <color name="momo_pink_light">#FFFDF2F8</color>        <!-- Hồng phấn cực nhạt (Nền highlight, thẻ ưu đãi) -->
-    <color name="momo_pink_border">#FFF9A8D4</color>       <!-- Viền hồng nhạt cho các khung thông báo -->
+    <!-- TDT Bank Sovereign - Core Palette -->
+    <color name="tdt_surface">#F9F9FB</color>
+    <color name="tdt_surface_dim">#D9DADC</color>
+    <color name="tdt_surface_bright">#F9F9FB</color>
+    <color name="tdt_surface_container_lowest">#FFFFFF</color>
+    <color name="tdt_surface_container_low">#F3F3F5</color>
+    <color name="tdt_surface_container">#EEEEF0</color>
+    <color name="tdt_surface_container_high">#E8E8EA</color>
+    <color name="tdt_surface_container_highest">#E2E2E4</color>
 
-    <!-- Màu nhấn & Trạng thái (Accents & Status) -->
-    <color name="momo_accent_yellow">#FFFFC107</color>     <!-- Vàng (Điểm thưởng, MoMo Xu, hạng thành viên) -->
-    <color name="momo_success_green">#FF10B981</color>     <!-- Xanh lá (Giao dịch thành công, tiền vào) -->
-    <color name="momo_error_red">#FFEF4444</color>         <!-- Đỏ (Thông báo lỗi, số dư không đủ) -->
-    <color name="momo_info_blue">#FF3B82F6</color>         <!-- Xanh dương (Liên kết ngân hàng, hướng dẫn) -->
+    <color name="tdt_on_surface">#1A1C1D</color>
+    <color name="tdt_on_surface_variant">#574149</color>
+    <color name="tdt_inverse_surface">#2F3132</color>
+    <color name="tdt_inverse_on_surface">#F0F0F2</color>
 
-    <!-- Màu nền giao diện (Backgrounds) -->
-    <color name="bg_screen">#FFF5F6F8</color>              <!-- Xám nhạt làm nền tổng thể màn hình -->
-    <color name="bg_card">#FFFFFFFF</color>                <!-- Trắng tinh cho các khối Card chức năng -->
-    <color name="divider_gray">#FFE5E7EB</color>           <!-- Xám kẻ ngang phân cách các mục -->
+    <color name="tdt_outline">#8A7079</color>
+    <color name="tdt_outline_variant">#DEBEC8</color>
+    <color name="tdt_surface_tint">#B3166E</color>
 
-    <!-- Màu chữ (Typography) -->
-    <color name="text_primary">#FF1F2937</color>           <!-- Đen xám đậm (Tiêu đề, số tiền) -->
-    <color name="text_secondary">#FF6B7280</color>         <!-- Xám vừa (Mô tả phụ, thời gian giao dịch) -->
-    <color name="text_hint">#FF9CA3AF</color>              <!-- Xám nhạt (Placeholder ô nhập liệu) -->
+    <color name="tdt_primary">#7B0049</color>
+    <color name="tdt_on_primary">#FFFFFF</color>
+    <color name="tdt_primary_container">#A50064</color>
+    <color name="tdt_on_primary_container">#FFB4D0</color>
+    <color name="tdt_inverse_primary">#FFB0CE</color>
 
-    <!-- Màu cơ bản (Giữ lại để tương thích theme mặc định) -->
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="tdt_secondary">#B70071</color>
+    <color name="tdt_on_secondary">#FFFFFF</color>
+    <color name="tdt_secondary_container">#FE4EA9</color>
+    <color name="tdt_on_secondary_container">#5C0036</color>
+
+    <color name="tdt_tertiary">#483943</color>
+    <color name="tdt_on_tertiary">#FFFFFF</color>
+    <color name="tdt_tertiary_container">#61505A</color>
+    <color name="tdt_on_tertiary_container">#DAC3D0</color>
+
+    <color name="tdt_error">#BA1A1A</color>
+    <color name="tdt_on_error">#FFFFFF</color>
+    <color name="tdt_error_container">#FFDAD6</color>
+    <color name="tdt_on_error_container">#93000A</color>
+
+    <color name="tdt_background">#F9F9FB</color>
+    <color name="tdt_on_background">#1A1C1D</color>
+    <color name="tdt_surface_variant">#E2E2E4</color>
+
+    <!-- Functional & Semantic Tokens -->
+    <color name="tdt_brand_primary">#A50064</color>
+    <color name="tdt_brand_primary_pressed">#850050</color>
+    <color name="tdt_accent_active">#D82D8B</color>
+    <color name="tdt_soft_highlight">#FCE4F1</color>
+    <color name="tdt_neutral_bg">#F5F5F7</color>
+    <color name="tdt_neutral_surface">#FFFFFF</color>
+    <color name="tdt_neutral_border">#E0E0E5</color>
+    <color name="tdt_text_primary">#222222</color>
+    <color name="tdt_text_secondary">#757575</color>
+
+    <color name="tdt_success">#2E9E5B</color>
+    <color name="tdt_error_alert">#D93025</color>
+    <color name="tdt_warning">#F5A623</color>
 </resources>
