@@ -7,12 +7,16 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
-import com.example.ck_mobile.CustomerMainActivity;
-import com.example.ck_mobile.LoginActivity;
-import com.example.ck_mobile.OfficerMainActivity;
+import com.example.ck_mobile.ui.customer.CustomerMainActivity;
+import com.example.ck_mobile.ui.auth.LoginActivity;
+import com.example.ck_mobile.ui.officer.OfficerMainActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Locale;
+
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 public final class AuthSessionHelper {
 
@@ -97,5 +101,28 @@ public final class AuthSessionHelper {
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         currentActivity.startActivity(intent);
         currentActivity.finish();
+    }
+
+    public static void applySystemBarInsets(View rootView) {
+        if (rootView == null) return;
+
+        final int initialLeft = rootView.getPaddingLeft();
+        final int initialTop = rootView.getPaddingTop();
+        final int initialRight = rootView.getPaddingRight();
+        final int initialBottom = rootView.getPaddingBottom();
+
+        ViewCompat.setOnApplyWindowInsetsListener(rootView, (v, windowInsets) -> {
+            Insets bars = windowInsets.getInsets(
+                    WindowInsetsCompat.Type.statusBars() | WindowInsetsCompat.Type.navigationBars()
+            );
+            v.setPadding(
+                    initialLeft + bars.left,
+                    initialTop + bars.top,
+                    initialRight + bars.right,
+                    initialBottom + bars.bottom
+            );
+            return windowInsets;
+        });
+        ViewCompat.requestApplyInsets(rootView);
     }
 }

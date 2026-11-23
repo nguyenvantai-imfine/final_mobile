@@ -617,7 +617,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="16dp"
-            android:background="@drawable/bg_input_locked"
+            android:background="@drawable/bg_input_locker"
             android:backgroundTint="@color/surface_container_low"
             android:gravity="center"
             android:orientation="horizontal"

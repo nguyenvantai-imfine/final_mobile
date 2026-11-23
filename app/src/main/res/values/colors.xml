@@ -58,4 +58,37 @@
     <color name="tdt_success">#2E9E5B</color>
     <color name="tdt_error_alert">#D93025</color>
     <color name="tdt_warning">#F5A623</color>
+
+    <color name="tdt_primary_fixed">#D8E2FF</color>
+    <color name="tdt_on_primary_fixed">#001A41</color>
+    <color name="tdt_on_primary_fixed_variant">#004494</color>
+    <color name="tdt_secondary_fixed">#FFDEA6</color>
+    <color name="tdt_on_secondary_fixed">#271900</color>
+    <color name="tdt_tertiary_fixed">#E0F2FE</color>
+    <color name="tdt_on_tertiary_fixed">#001F2A</color>
+
+    <!-- Aliases for activity_login.xml -->
+    <color name="surface">#F8F9FA</color>
+    <color name="surface_container_lowest">#FFFFFF</color>
+    <color name="surface_container_low">#F3F4F6</color>
+    <color name="surface_container_high">#E5E7EB</color>
+    <color name="surface_container_highest">#D1D5DB</color>
+    <color name="on_surface">#111827</color>
+    <color name="on_surface_variant">#4B5563</color>
+    <color name="outline">#6B7280</color>
+    <color name="outline_variant">#D1D5DB</color>
+
+    <color name="primary_container">#004494</color>
+    <color name="on_primary">#FFFFFF</color>
+    <color name="on_primary_container">#D8E2FF</color>
+
+    <color name="secondary">#0056B3</color>
+    <color name="secondary_fixed">#FFDEA6</color>
+    <color name="tertiary_fixed">#E0F2FE</color>
+
+    <color name="error">#BA1A1A</color>
+    <color name="error_container">#FFDAD6</color>
+    <color name="on_error_container">#410002</color>
+
+    <color name="secondary_container">#FE4EA9</color>
 </resources>
