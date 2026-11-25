@@ -1,5 +1,6 @@
 package com.example.ck_mobile.ui.customer;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -9,6 +10,7 @@ import androidx.annotation.Nullable;
 import com.example.ck_mobile.R;
 import com.example.ck_mobile.ui.base.BaseSecureActivity;
 import com.example.ck_mobile.utils.AuthSessionHelper;
+import com.example.ck_mobile.utils.Constants;
 import com.google.firebase.auth.FirebaseUser;
 
 public class CustomerMainActivity extends BaseSecureActivity {
@@ -110,6 +112,27 @@ public class CustomerMainActivity extends BaseSecureActivity {
             View target = findViewById(id);
             if (target != null) {
                 target.setOnClickListener(devListener);
+            }
+        }
+
+        // Các chức năng đã hoàn thiện (ghi đè lên trình xử lý "Đang phát triển")
+        open(new int[]{R.id.btn_all_transactions, R.id.tx_item_1, R.id.tx_item_2, R.id.tx_item_3},
+                TransactionHistoryActivity.class, null);
+        open(new int[]{R.id.nav_cust_chatbot}, ChatActivity.class, null);
+        open(new int[]{R.id.util_movie_ticket}, ServiceOrderActivity.class, Constants.TX_MOVIE);
+        open(new int[]{R.id.util_hotel}, ServiceOrderActivity.class, Constants.TX_HOTEL);
+        open(new int[]{R.id.card_top_avatar}, KycStatusActivity.class, null);
+    }
+
+    private void open(int[] viewIds, Class<?> target, @Nullable String serviceType) {
+        for (int id : viewIds) {
+            View v = findViewById(id);
+            if (v != null) {
+                v.setOnClickListener(x -> {
+                    Intent i = new Intent(this, target);
+                    if (serviceType != null) i.putExtra(Constants.EXTRA_SERVICE_TYPE, serviceType);
+                    startActivity(i);
+                });
             }
         }
     }

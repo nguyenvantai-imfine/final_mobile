@@ -1,6 +1,11 @@
 package com.example.ck_mobile.model;
 
+import com.google.firebase.firestore.DocumentId;
+
 public class UserProfile {
+    @DocumentId
+    private String uid;
+    private String kycStatus; // NONE / PENDING / APPROVED / REJECTED
     private String fullName;
     private String email;
     private String phone;
@@ -67,5 +72,21 @@ public class UserProfile {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
+    public String getKycStatus() {
+        return kycStatus;
+    }
+
+    public void setKycStatus(String kycStatus) {
+        this.kycStatus = kycStatus;
     }
 }

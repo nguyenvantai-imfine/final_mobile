@@ -1,5 +1,6 @@
 package com.example.ck_mobile.ui.officer;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -137,6 +138,23 @@ public class OfficerMainActivity extends BaseSecureActivity {
             View target = findViewById(id);
             if (target != null) {
                 target.setOnClickListener(devListener);
+            }
+        }
+
+        // Các chức năng đã hoàn thiện (ghi đè lên trình xử lý "Đang phát triển")
+        open(new int[]{R.id.btn_officer_open_account}, CustomerFormActivity.class);
+        open(new int[]{R.id.card_kpi_customers, R.id.nav_off_customers}, CustomerListActivity.class);
+        open(new int[]{R.id.btn_officer_review_ekyc, R.id.card_kpi_ekyc, R.id.btn_view_all_ekyc,
+                R.id.nav_off_ekyc}, EkycListActivity.class);
+        open(new int[]{R.id.btn_officer_biometric_reg}, EkycRegisterActivity.class);
+        open(new int[]{R.id.btn_officer_interest_rates}, InterestRateActivity.class);
+    }
+
+    private void open(int[] viewIds, Class<?> target) {
+        for (int id : viewIds) {
+            View v = findViewById(id);
+            if (v != null) {
+                v.setOnClickListener(x -> startActivity(new Intent(this, target)));
             }
         }
     }
