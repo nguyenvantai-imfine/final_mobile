@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "572197436193",
+    "project_id": "ebank-final",
+    "storage_bucket": "ebank-final.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:572197436193:android:4873cfa3403ac7f3b15c60",
+        "android_client_info": {
+          "package_name": "com.example.ck_mobile"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXe4zJHuUslrNlDZm_HZpS2RIPvFW-pPY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

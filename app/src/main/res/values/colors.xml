@@ -1,10 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
+    <!-- TDT Bank Sovereign Design System Colors -->
+    <color name="primary">#7B0049</color>
+    <color name="primary_dark">#5C0036</color>
+    <color name="primary_container">#A50064</color>
+    <color name="on_primary">#FFFFFF</color>
+
+    <color name="secondary">#B70071</color>
+    <color name="secondary_container">#FE4EA9</color>
+    <color name="accent_active">#D82D8B</color>
+
+    <color name="background">#F9F9FB</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="surface_container">#EEEEF0</color>
+    <color name="highlight_surface">#FCE4F1</color>
+
+    <color name="text_primary">#1A1C1D</color>
+    <color name="text_secondary">#757575</color>
+    <color name="text_muted">#8A7079</color>
+
+    <color name="success">#2E9E5B</color>
+    <color name="error">#BA1A1A</color>
+    <color name="warning">#F5A623</color>
+    <color name="border_color">#E0E0E5</color>
+
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="transparent">#00000000</color>
 </resources>
