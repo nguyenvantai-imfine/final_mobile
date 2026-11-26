@@ -43,6 +43,11 @@
             android:name=".ui.officer.OfficerMainActivity"
             android:exported="false" />
 
+        <service
+            android:name=".utils.SessionWatchService"
+            android:exported="false"
+            android:stopWithTask="false" />
+
     </application>
 
 </manifest>

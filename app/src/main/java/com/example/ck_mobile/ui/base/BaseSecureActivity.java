@@ -5,11 +5,15 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.ck_mobile.ui.auth.LogoutConfirmDialogFragment;
 import com.example.ck_mobile.utils.AuthSessionHelper;
+import com.example.ck_mobile.utils.SessionManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import android.view.MotionEvent;
 import android.view.View;
 import com.example.ck_mobile.utils.AuthSessionHelper;
 
@@ -45,6 +49,19 @@ public abstract class BaseSecureActivity extends AppCompatActivity {
                 .addOnSuccessListener(this, snapshot -> verifyUserAccess(snapshot))
                 .addOnFailureListener(this, e ->
                         AuthSessionHelper.signOutAndGoLogin(this, "Không thể xác thực quyền truy cập."));
+
+        SessionManager sessionManager = SessionManager.getInstance(this);
+        if (sessionManager.wasRemovedFromRecents() || sessionManager.isSessionExpired()) {
+            String reason = sessionManager.wasRemovedFromRecents()
+                    ? SessionManager.REASON_TASK_REMOVED
+                    : SessionManager.REASON_TIMEOUT;
+            sessionManager.logoutAndRedirectToLogin(reason);
+            return;
+        }
+        sessionManager.setTimeoutCallback(() ->
+                sessionManager.logoutAndRedirectToLogin(SessionManager.REASON_TIMEOUT)
+        );
+        sessionManager.touchActivity();
     }
 
     private void verifyUserAccess(DocumentSnapshot snapshot) {
@@ -80,5 +97,21 @@ public abstract class BaseSecureActivity extends AppCompatActivity {
         if (contentView != null) {
             AuthSessionHelper.applySystemBarInsets(contentView);
         }
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if (ev.getAction() == MotionEvent.ACTION_DOWN) {
+            SessionManager.getInstance(this).touchActivity();
+        }
+        return super.dispatchTouchEvent(ev);
+    }
+
+    protected void showLogoutConfirmDialog(@Nullable String email) {
+        LogoutConfirmDialogFragment dialog = LogoutConfirmDialogFragment.newInstance(email);
+        dialog.setOnLogoutConfirmedListener(() ->
+                SessionManager.getInstance(this).logoutAndRedirectToLogin(null)
+        );
+        dialog.show(getSupportFragmentManager(), LogoutConfirmDialogFragment.TAG);
     }
 }
