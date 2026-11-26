@@ -1,0 +1,40 @@
+digraph G { rankdir=TB; compound=true; newrank=true; fontname="DejaVu Sans"; nodesep=0.35; ranksep=0.7; splines=true;
+node [shape=plain fontname="DejaVu Sans" fontsize=10]; edge [fontname="DejaVu Sans" fontsize=9 color="#555555"];
+subgraph "cluster_Base" { label="Base"; style="rounded,filled"; fillcolor="#FAFAFA"; color="#BDBDBD"; fontsize=12;
+"BaseSecureActivity" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#ECEFF1"><B>BaseSecureActivity</B><BR/><I>«abstract»</I></TD></TR></TABLE>>];
+}
+subgraph "cluster_Customer UI" { label="Customer UI"; style="rounded,filled"; fillcolor="#FAFAFA"; color="#BDBDBD"; fontsize=12;
+"TransactionHistoryActivity" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#FCE4EC"><B>TransactionHistoryActivity</B></TD></TR></TABLE>>];
+"ServiceOrderActivity" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#FCE4EC"><B>ServiceOrderActivity</B></TD></TR></TABLE>>];
+}
+subgraph "cluster_Adapter" { label="Adapter"; style="rounded,filled"; fillcolor="#FAFAFA"; color="#BDBDBD"; fontsize=12;
+"TransactionAdapter" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#F8BBD0"><B>TransactionAdapter</B></TD></TR></TABLE>>];
+"ServiceItemAdapter" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#F8BBD0"><B>ServiceItemAdapter</B></TD></TR></TABLE>>];
+}
+subgraph "cluster_ViewModel" { label="ViewModel"; style="rounded,filled"; fillcolor="#FAFAFA"; color="#BDBDBD"; fontsize=12;
+"TransactionHistoryViewModel" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#E3F2FD"><B>TransactionHistoryViewModel</B></TD></TR><TR><TD ALIGN="LEFT" BORDER="0">+ getFiltered()</TD></TR><TR><TD ALIGN="LEFT" BORDER="0">+ getMonths()</TD></TR><TR><TD ALIGN="LEFT" BORDER="0">+ getLoading()</TD></TR><TR><TD ALIGN="LEFT" BORDER="0">+ getError()</TD></TR><TR><TD ALIGN="LEFT" BORDER="0">+ load()</TD></TR><TR><TD ALIGN="LEFT" BORDER="0">…</TD></TR></TABLE>>];
+}
+subgraph "cluster_Repository" { label="Repository"; style="rounded,filled"; fillcolor="#FAFAFA"; color="#BDBDBD"; fontsize=12;
+"TransactionRepository" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#E8F5E9"><B>TransactionRepository</B></TD></TR><TR><TD ALIGN="LEFT" BORDER="0">+ loadByOwner()</TD></TR></TABLE>>];
+"ServiceOrderRepository" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#E8F5E9"><B>ServiceOrderRepository</B></TD></TR><TR><TD ALIGN="LEFT" BORDER="0">+ pay()</TD></TR></TABLE>>];
+"ServiceCatalog" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#E8F5E9"><B>ServiceCatalog</B></TD></TR><TR><TD ALIGN="LEFT" BORDER="0">+ movies()</TD></TR><TR><TD ALIGN="LEFT" BORDER="0">+ hotels()</TD></TR><TR><TD ALIGN="LEFT" BORDER="0">+ forType()</TD></TR></TABLE>>];
+}
+subgraph "cluster_Model" { label="Model"; style="rounded,filled"; fillcolor="#FAFAFA"; color="#BDBDBD"; fontsize=12;
+"TransactionRecord" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#F3E5F5"><B>TransactionRecord</B></TD></TR></TABLE>>];
+"ServiceItem" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#F3E5F5"><B>ServiceItem</B></TD></TR></TABLE>>];
+"Account" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#F3E5F5"><B>Account</B></TD></TR></TABLE>>];
+}
+"ServiceCatalog" -> "ServiceItem" [arrowhead=vee style=dashed color="#9E9E9E"];
+"ServiceOrderRepository" -> "ServiceItem" [arrowhead=vee style=dashed color="#9E9E9E"];
+"TransactionRepository" -> "TransactionRecord" [arrowhead=vee style=dashed color="#9E9E9E"];
+"ServiceOrderActivity" -> "BaseSecureActivity" [arrowhead=empty];
+"ServiceOrderActivity" -> "ServiceOrderRepository" [arrowhead=none arrowtail=diamond dir=back];
+"ServiceOrderActivity" -> "ServiceItem" [arrowhead=vee];
+"TransactionHistoryActivity" -> "BaseSecureActivity" [arrowhead=empty];
+"TransactionHistoryActivity" -> "TransactionHistoryViewModel" [arrowhead=vee];
+"TransactionHistoryActivity" -> "TransactionAdapter" [arrowhead=vee];
+"ServiceItemAdapter" -> "ServiceItem" [arrowhead=vee];
+"TransactionAdapter" -> "TransactionRecord" [arrowhead=vee];
+"TransactionHistoryViewModel" -> "TransactionRepository" [arrowhead=none arrowtail=diamond dir=back];
+"TransactionHistoryViewModel" -> "TransactionRecord" [arrowhead=vee];
+}

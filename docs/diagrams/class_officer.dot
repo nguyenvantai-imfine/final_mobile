@@ -1,0 +1,66 @@
+digraph G { rankdir=TB; compound=true; newrank=true; fontname="DejaVu Sans"; nodesep=0.35; ranksep=0.7; splines=true;
+node [shape=plain fontname="DejaVu Sans" fontsize=10]; edge [fontname="DejaVu Sans" fontsize=9 color="#555555"];
+subgraph "cluster_Base" { label="Base"; style="rounded,filled"; fillcolor="#FAFAFA"; color="#BDBDBD"; fontsize=12;
+"BaseSecureActivity" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#ECEFF1"><B>BaseSecureActivity</B><BR/><I>«abstract»</I></TD></TR></TABLE>>];
+}
+subgraph "cluster_Officer UI" { label="Officer UI"; style="rounded,filled"; fillcolor="#FAFAFA"; color="#BDBDBD"; fontsize=12;
+"CustomerListActivity" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#FCE4EC"><B>CustomerListActivity</B></TD></TR></TABLE>>];
+"CustomerFormActivity" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#FCE4EC"><B>CustomerFormActivity</B></TD></TR></TABLE>>];
+"InterestRateActivity" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#FCE4EC"><B>InterestRateActivity</B></TD></TR></TABLE>>];
+"EkycListActivity" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#FCE4EC"><B>EkycListActivity</B></TD></TR></TABLE>>];
+"EkycReviewActivity" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#FCE4EC"><B>EkycReviewActivity</B></TD></TR></TABLE>>];
+"EkycRegisterActivity" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#FCE4EC"><B>EkycRegisterActivity</B></TD></TR></TABLE>>];
+}
+subgraph "cluster_Customer UI" { label="Customer UI"; style="rounded,filled"; fillcolor="#FAFAFA"; color="#BDBDBD"; fontsize=12;
+"KycStatusActivity" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#FCE4EC"><B>KycStatusActivity</B></TD></TR></TABLE>>];
+}
+subgraph "cluster_Adapter" { label="Adapter"; style="rounded,filled"; fillcolor="#FAFAFA"; color="#BDBDBD"; fontsize=12;
+"CustomerAdapter" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#F8BBD0"><B>CustomerAdapter</B></TD></TR></TABLE>>];
+"KycAdapter" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#F8BBD0"><B>KycAdapter</B></TD></TR></TABLE>>];
+}
+subgraph "cluster_ViewModel" { label="ViewModel"; style="rounded,filled"; fillcolor="#FAFAFA"; color="#BDBDBD"; fontsize=12;
+"CustomerListViewModel" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#E3F2FD"><B>CustomerListViewModel</B></TD></TR><TR><TD ALIGN="LEFT" BORDER="0">+ getCustomers()</TD></TR><TR><TD ALIGN="LEFT" BORDER="0">+ getLoading()</TD></TR><TR><TD ALIGN="LEFT" BORDER="0">+ getError()</TD></TR><TR><TD ALIGN="LEFT" BORDER="0">+ load()</TD></TR></TABLE>>];
+}
+subgraph "cluster_Repository" { label="Repository"; style="rounded,filled"; fillcolor="#FAFAFA"; color="#BDBDBD"; fontsize=12;
+"CustomerRepository" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#E8F5E9"><B>CustomerRepository</B></TD></TR><TR><TD ALIGN="LEFT" BORDER="0">+ listCustomers()</TD></TR><TR><TD ALIGN="LEFT" BORDER="0">+ getCustomer()</TD></TR><TR><TD ALIGN="LEFT" BORDER="0">+ createCustomer()</TD></TR><TR><TD ALIGN="LEFT" BORDER="0">+ updateCustomer()</TD></TR><TR><TD ALIGN="LEFT" BORDER="0">+ setLocked()</TD></TR></TABLE>>];
+"KycRepository" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#E8F5E9"><B>KycRepository</B></TD></TR><TR><TD ALIGN="LEFT" BORDER="0">+ list()</TD></TR><TR><TD ALIGN="LEFT" BORDER="0">+ get()</TD></TR><TR><TD ALIGN="LEFT" BORDER="0">+ register()</TD></TR><TR><TD ALIGN="LEFT" BORDER="0">+ review()</TD></TR><TR><TD ALIGN="LEFT" BORDER="0">+ loadPhoto()</TD></TR></TABLE>>];
+"RateRepository" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#E8F5E9"><B>RateRepository</B></TD></TR><TR><TD ALIGN="LEFT" BORDER="0">+ loadRates()</TD></TR><TR><TD ALIGN="LEFT" BORDER="0">+ saveRates()</TD></TR></TABLE>>];
+"SeedRepository" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#E8F5E9"><B>SeedRepository</B></TD></TR><TR><TD ALIGN="LEFT" BORDER="0">+ seed()</TD></TR></TABLE>>];
+"AuditRepository" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#E8F5E9"><B>AuditRepository</B></TD></TR><TR><TD ALIGN="LEFT" BORDER="0">+ addToBatch()</TD></TR></TABLE>>];
+}
+subgraph "cluster_Model" { label="Model"; style="rounded,filled"; fillcolor="#FAFAFA"; color="#BDBDBD"; fontsize=12;
+"UserProfile" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#F3E5F5"><B>UserProfile</B></TD></TR></TABLE>>];
+"KycRecord" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#F3E5F5"><B>KycRecord</B></TD></TR></TABLE>>];
+"InterestRate" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#F3E5F5"><B>InterestRate</B></TD></TR></TABLE>>];
+}
+"CustomerRepository" -> "AuditRepository" [arrowhead=vee style=dashed color="#9E9E9E"];
+"CustomerRepository" -> "UserProfile" [arrowhead=vee style=dashed color="#9E9E9E"];
+"KycRepository" -> "AuditRepository" [arrowhead=vee style=dashed color="#9E9E9E"];
+"KycRepository" -> "KycRecord" [arrowhead=vee style=dashed color="#9E9E9E"];
+"RateRepository" -> "AuditRepository" [arrowhead=vee style=dashed color="#9E9E9E"];
+"RateRepository" -> "InterestRate" [arrowhead=vee style=dashed color="#9E9E9E"];
+"SeedRepository" -> "AuditRepository" [arrowhead=vee style=dashed color="#9E9E9E"];
+"KycStatusActivity" -> "BaseSecureActivity" [arrowhead=empty];
+"CustomerFormActivity" -> "BaseSecureActivity" [arrowhead=empty];
+"CustomerFormActivity" -> "CustomerRepository" [arrowhead=none arrowtail=diamond dir=back];
+"CustomerFormActivity" -> "UserProfile" [arrowhead=vee];
+"CustomerListActivity" -> "BaseSecureActivity" [arrowhead=empty];
+"CustomerListActivity" -> "CustomerListViewModel" [arrowhead=vee];
+"CustomerListActivity" -> "CustomerAdapter" [arrowhead=vee];
+"EkycListActivity" -> "BaseSecureActivity" [arrowhead=empty];
+"EkycListActivity" -> "KycRepository" [arrowhead=none arrowtail=diamond dir=back];
+"EkycListActivity" -> "KycAdapter" [arrowhead=vee];
+"EkycRegisterActivity" -> "BaseSecureActivity" [arrowhead=empty];
+"EkycRegisterActivity" -> "CustomerRepository" [arrowhead=none arrowtail=diamond dir=back];
+"EkycRegisterActivity" -> "KycRepository" [arrowhead=none arrowtail=diamond dir=back];
+"EkycRegisterActivity" -> "UserProfile" [arrowhead=vee];
+"EkycReviewActivity" -> "BaseSecureActivity" [arrowhead=empty];
+"EkycReviewActivity" -> "KycRepository" [arrowhead=none arrowtail=diamond dir=back];
+"EkycReviewActivity" -> "KycRecord" [arrowhead=vee];
+"InterestRateActivity" -> "BaseSecureActivity" [arrowhead=empty];
+"InterestRateActivity" -> "RateRepository" [arrowhead=none arrowtail=diamond dir=back];
+"InterestRateActivity" -> "InterestRate" [arrowhead=vee];
+"CustomerAdapter" -> "UserProfile" [arrowhead=vee];
+"KycAdapter" -> "KycRecord" [arrowhead=vee];
+"CustomerListViewModel" -> "CustomerRepository" [arrowhead=none arrowtail=diamond dir=back];
+}

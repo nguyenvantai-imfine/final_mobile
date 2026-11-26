@@ -1,0 +1,21 @@
+digraph E { rankdir=LR; nodesep=0.45; ranksep=1.2; fontname="DejaVu Sans";
+node [shape=plain fontname="DejaVu Sans" fontsize=10]; edge [fontname="DejaVu Sans" fontsize=10 color="#555555" arrowhead=crow arrowtail=none dir=both arrowtail=tee];
+users [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3"><TR><TD BGCOLOR="#FCE4EC"><B>users</B>  (id = uid)</TD></TR><TR><TD ALIGN="LEFT">fullName, email, phone, address</TD></TR><TR><TD ALIGN="LEFT">accountNumber, role, status</TD></TR><TR><TD ALIGN="LEFT">kycStatus, createdAt</TD></TR></TABLE>>];
+accounts [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3"><TR><TD BGCOLOR="#E8F5E9"><B>accounts</B></TD></TR><TR><TD ALIGN="LEFT">ownerUid → users</TD></TR><TR><TD ALIGN="LEFT">type, number, balance, createdAt</TD></TR></TABLE>>];
+transactions [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3"><TR><TD BGCOLOR="#E8F5E9"><B>transactions</B></TD></TR><TR><TD ALIGN="LEFT">ownerUid → users</TD></TR><TR><TD ALIGN="LEFT">accountId → accounts</TD></TR><TR><TD ALIGN="LEFT">accountNumber, type, amount, credit</TD></TR><TR><TD ALIGN="LEFT">description, balanceAfter, createdAt</TD></TR></TABLE>>];
+orders [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3"><TR><TD BGCOLOR="#E8F5E9"><B>orders</B></TD></TR><TR><TD ALIGN="LEFT">ownerUid → users</TD></TR><TR><TD ALIGN="LEFT">transactionId → transactions</TD></TR><TR><TD ALIGN="LEFT">type, itemId, itemTitle, quantity</TD></TR><TR><TD ALIGN="LEFT">unitPrice, total, status, createdAt</TD></TR></TABLE>>];
+kyc [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3"><TR><TD BGCOLOR="#F3E5F5"><B>kyc</B>  (id = uid khách)</TD></TR><TR><TD ALIGN="LEFT">customerName, photoPath, status, note</TD></TR><TR><TD ALIGN="LEFT">registeredBy, reviewedBy → users</TD></TR><TR><TD ALIGN="LEFT">createdAt, reviewedAt</TD></TR></TABLE>>];
+audit [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3"><TR><TD BGCOLOR="#ECEFF1"><B>audit_logs</B></TD></TR><TR><TD ALIGN="LEFT">actorUid, targetUid → users</TD></TR><TR><TD ALIGN="LEFT">action, detail, createdAt</TD></TR></TABLE>>];
+lookup [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3"><TR><TD BGCOLOR="#ECEFF1"><B>login_lookup</B></TD></TR><TR><TD ALIGN="LEFT">id = phone_{sđt} | acc_{stk}</TD></TR><TR><TD ALIGN="LEFT">uid → users, email, status</TD></TR></TABLE>>];
+chat [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3"><TR><TD BGCOLOR="#FFF8E1"><B>users/{uid}/chat_messages</B></TD></TR><TR><TD ALIGN="LEFT">text, fromUser, actionLabel</TD></TR><TR><TD ALIGN="LEFT">actionTarget, createdAt</TD></TR></TABLE>>];
+rates [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3"><TR><TD BGCOLOR="#FFF3E0"><B>rates</B>  (id = m{kỳ hạn})</TD></TR><TR><TD ALIGN="LEFT">termMonths, rate</TD></TR></TABLE>>];
+branches [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3"><TR><TD BGCOLOR="#FFF3E0"><B>branches</B></TD></TR><TR><TD ALIGN="LEFT">name, address, lat, lng</TD></TR></TABLE>>];
+users -> accounts [taillabel="1" headlabel="N" labeldistance=2];
+accounts -> transactions [taillabel="1" headlabel="N" labeldistance=2];
+users -> orders [taillabel="1" headlabel="N" labeldistance=2];
+orders -> transactions [arrowhead=tee taillabel="1" headlabel="1" labeldistance=2 style=dashed];
+users -> kyc [arrowhead=tee taillabel="1" headlabel="0..1" labeldistance=2.2];
+users -> audit [taillabel="1" headlabel="N" labeldistance=2];
+users -> lookup [taillabel="1" headlabel="1..2" labeldistance=2.2];
+users -> chat [taillabel="1" headlabel="N" labeldistance=2];
+}

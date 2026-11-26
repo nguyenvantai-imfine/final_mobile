@@ -43,6 +43,57 @@
             android:name=".ui.officer.OfficerMainActivity"
             android:exported="false" />
 
+        <activity
+            android:name=".ui.officer.CustomerListActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.officer.CustomerFormActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.officer.InterestRateActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.officer.EkycListActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.officer.EkycReviewActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.officer.EkycRegisterActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.customer.TransactionHistoryActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.customer.ServiceOrderActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.customer.ChatActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.customer.KycStatusActivity"
+            android:exported="false" />
+
+        <!-- FileProvider cho ảnh eKYC chụp bằng camera hệ thống -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
     </application>
 
 </manifest>

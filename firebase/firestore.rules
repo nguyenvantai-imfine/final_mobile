@@ -1,0 +1,111 @@
+rules_version = '2';
+
+// Security Rules cho TDT Bank (đồ án). Triển khai: firebase deploy --only firestore:rules
+// Vai trò lấy từ users/{uid}.role (CUSTOMER / OFFICER). Tài khoản LOCKED bị chặn.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function profile() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data;
+    }
+
+    function isOfficer() {
+      return signedIn() && profile().role == 'OFFICER' && profile().status != 'LOCKED';
+    }
+
+    function isOwner(uid) {
+      return signedIn() && request.auth.uid == uid;
+    }
+
+    // ---- users ----
+    match /users/{uid} {
+      allow read: if isOwner(uid) || isOfficer();
+      // Officer tạo hồ sơ khách hàng (kể cả khi seed dữ liệu mẫu)
+      allow create: if isOfficer() && request.resource.data.role == 'CUSTOMER';
+      allow update: if isOfficer()
+        || (isOwner(uid)
+            && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['fullName', 'address']));
+      allow delete: if false;
+
+      // Lịch sử chat của chính người dùng
+      match /chat_messages/{id} {
+        allow read, create: if isOwner(uid);
+        allow update, delete: if false;
+      }
+    }
+
+    // ---- accounts ----
+    match /accounts/{id} {
+      allow read: if isOfficer() || isOwner(resource.data.ownerUid);
+      allow create: if isOfficer();
+      // Customer chỉ được đổi trường balance của tài khoản CỦA CHÍNH MÌNH (không đổi chủ sở hữu, loại,
+      // số tài khoản) và số dư không âm.
+      // HẠN CHẾ: không có Cloud Functions nên rules không chống được việc tự cộng tiền cho mình.
+      // Chuyển tiền sang tài khoản của người khác (TV2) cần mở rộng rule này, ví dụ qua một collection
+      // "transfers" do Officer/Cloud Function xử lý; xem mục Hạn chế trong báo cáo.
+      allow update: if isOfficer()
+        || (isOwner(resource.data.ownerUid)
+            && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['balance'])
+            && request.resource.data.balance >= 0);
+      allow delete: if false;
+    }
+
+    // ---- transactions ----
+    match /transactions/{id} {
+      allow read: if isOfficer() || isOwner(resource.data.ownerUid);
+      // Customer chỉ ghi giao dịch của chính mình. Bản ghi "nhận tiền" cho người khác (chuyển tiền
+      // nội bộ của TV2) cần mở rộng rule, không mở cho mọi người dùng để tránh tạo giao dịch giả.
+      allow create: if isOfficer() || isOwner(request.resource.data.ownerUid);
+      allow update, delete: if false;
+    }
+
+    // ---- orders (vé phim / khách sạn) ----
+    match /orders/{id} {
+      allow read: if isOfficer() || isOwner(resource.data.ownerUid);
+      allow create: if isOwner(request.resource.data.ownerUid);
+      allow update, delete: if false;
+    }
+
+    // ---- rates: ai đăng nhập cũng đọc được, chỉ Officer sửa ----
+    match /rates/{id} {
+      allow read: if signedIn();
+      allow write: if isOfficer();
+    }
+
+    // ---- branches ----
+    match /branches/{id} {
+      allow read: if signedIn();
+      allow write: if isOfficer();
+    }
+
+    // ---- kyc (doc id = uid của khách) ----
+    match /kyc/{uid} {
+      allow read: if isOfficer() || isOwner(uid);
+      allow write: if isOfficer();
+    }
+
+    // ---- audit_logs: chỉ ghi thêm, chỉ Officer đọc ----
+    match /audit_logs/{id} {
+      allow read: if isOfficer();
+      allow create: if isOfficer();
+      allow update, delete: if false;
+    }
+
+    // ---- login_lookup: LoginActivity tra email từ SĐT / số tài khoản TRƯỚC khi đăng nhập ----
+    // Chỉ cho đọc từng tài liệu (get), cấm liệt kê. Đánh đổi: ai biết SĐT / STK có thể thấy email tương ứng.
+    match /login_lookup/{id} {
+      allow get: if true;
+      allow list: if false;
+      allow write: if isOfficer();
+    }
+
+    // Mọi thứ khác bị từ chối
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

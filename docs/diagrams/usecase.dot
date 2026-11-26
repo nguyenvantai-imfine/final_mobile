@@ -1,0 +1,14 @@
+digraph U { rankdir=LR; nodesep=0.25; ranksep=1.1; fontname="DejaVu Sans";
+node [fontname="DejaVu Sans" fontsize=11]; edge [arrowhead=none color="#555555"];
+off [label="Officer" shape=box style="filled" fillcolor="#FCE4EC" fontsize=14 width=1.1 height=0.7];
+cus [label="Customer" shape=box style="filled" fillcolor="#E3F2FD" fontsize=14 width=1.1 height=0.7];
+subgraph cluster_sys { label="TDT Bank – chức năng phần TV3"; style="rounded"; color="#A50064"; fontsize=14;
+ node [shape=ellipse style=filled fillcolor="#FFFFFF" color="#757575"];
+ o1 [label="Xem / tìm khách hàng"]; o2 [label="Tạo tài khoản khách hàng"]; o3 [label="Sửa thông tin khách hàng"]; o4 [label="Khóa / mở khóa khách hàng"]; o5 [label="Chỉnh lãi suất tiết kiệm"]; o6 [label="Đăng ký sinh trắc học (eKYC)"]; o7 [label="Duyệt / từ chối hồ sơ eKYC"]; o8 [label="Nạp dữ liệu mẫu"];
+ c1 [label="Xem lịch sử giao dịch"]; c2 [label="Lọc theo tháng / loại"]; c3 [label="Mua vé phim"]; c4 [label="Đặt khách sạn"]; c5 [label="Hỏi đáp với chatbot"]; c6 [label="Mở chức năng từ deep link"]; c7 [label="Xem trạng thái eKYC"];
+}
+off -> o1; off -> o2; off -> o3; off -> o4; off -> o5; off -> o6; off -> o7; off -> o8;
+cus -> c1; cus -> c3; cus -> c4; cus -> c5; cus -> c7;
+c1 -> c2 [arrowhead=open style=dashed label="«extend»" fontsize=9]; c5 -> c6 [arrowhead=open style=dashed label="«extend»" fontsize=9];
+o7 -> o6 [arrowhead=open style=dashed label="«include»" fontsize=9 constraint=false];
+}
