@@ -1,0 +1,26 @@
+digraph UC { rankdir=LR; fontname="DejaVu Sans"; nodesep=0.25; ranksep=1.6;
+node [fontname="DejaVu Sans" fontsize=10]; edge [color="#666666" arrowhead=none];
+C [label="Khách hàng\n(Customer)" shape=box style="rounded,filled" fillcolor="#E3F2FD"];
+O [label="Nhân viên\n(Officer)" shape=box style="rounded,filled" fillcolor="#FCE4EC"];
+subgraph cluster_a { label="Hệ thống TDT Mobile Banking"; style=rounded; color="#9E9E9E"; fontsize=13;
+ node [shape=ellipse style=filled];
+ subgraph cluster_auth { label="Xác thực & bảo mật"; style=dashed; node[fillcolor="#FFF3E0"];
+  U01 [label="Đăng nhập (R05)"]; U02 [label="OTP 2FA giao dịch (R08)"]; U03 [label="eKYC khuôn mặt (R06)"]; U04 [label="Xác thực mặt giao dịch lớn (R07)"]; }
+ subgraph cluster_acc { label="Tài khoản"; style=dashed; node[fillcolor="#E8F5E9"];
+  U05 [label="Xem 3 loại tài khoản (R09)"]; U06 [label="Xem lãi suất / lợi nhuận (R10)"]; U07 [label="Tính khoản trả vay (R12)"]; U08 [label="Lịch sử giao dịch (R13)"]; U09 [label="Nạp / rút tiền (R14)"]; U10 [label="Xem & sửa hồ sơ (R04)"]; }
+ subgraph cluster_tx { label="Giao dịch & tiện ích"; style=dashed; node[fillcolor="#F3E5F5"];
+  U11 [label="Chuyển tiền nội bộ (R16)"]; U12 [label="Chuyển liên ngân hàng (R17)"]; U13 [label="VNPay/Stripe (R18)"]; U14 [label="Thanh toán điện, nước (R19)"]; U15 [label="Nạp tiền điện thoại (R20)"]; U16 [label="Vé phim, khách sạn (R21)"]; U17 [label="Kiểm tra giao dịch hợp lệ (R15)"]; }
+ subgraph cluster_nav { label="Điều hướng & AI"; style=dashed; node[fillcolor="#FFF8E1"];
+  U18 [label="Định vị, bản đồ (R22)"]; U19 [label="Chi nhánh/ATM gần (R23)"]; U20 [label="Đường đi bộ (R24)"]; U21 [label="Chatbot + deep link (R25)"]; }
+ subgraph cluster_off { label="Nghiệp vụ Officer"; style=dashed; node[fillcolor="#FCE4EC"];
+  U22 [label="Tạo khách hàng (R02)"]; U23 [label="Sửa / khóa khách hàng (R03)"]; U24 [label="Chỉnh lãi suất (R11)"]; U25 [label="Duyệt eKYC (R06)"]; }
+}
+C -> {U01 U02 U03 U05 U06 U07 U08 U09 U10 U11 U12 U13 U14 U15 U16 U18 U19 U20 U21};
+O -> {U01 U22 U23 U24 U25};
+U09 -> U02 [style=dashed arrowhead=vee label="«include»" fontsize=8];
+U11 -> U02 [style=dashed arrowhead=vee label="«include»" fontsize=8];
+U11 -> U17 [style=dashed arrowhead=vee label="«include»" fontsize=8];
+U12 -> U11 [style=dashed arrowhead=vee label="«extend»" fontsize=8];
+U04 -> U11 [style=dashed arrowhead=vee label="«extend»" fontsize=8];
+U20 -> U19 [style=dashed arrowhead=vee label="«include»" fontsize=8];
+}
