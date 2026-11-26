@@ -83,6 +83,10 @@
             android:name=".ui.customer.KycStatusActivity"
             android:exported="false" />
 
+        <activity
+            android:name=".ui.customer.InterestRateViewActivity"
+            android:exported="false" />
+
         <!-- FileProvider cho ảnh eKYC chụp bằng camera hệ thống -->
         <provider
             android:name="androidx.core.content.FileProvider"

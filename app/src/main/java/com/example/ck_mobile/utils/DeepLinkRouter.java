@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.widget.Toast;
 
 import com.example.ck_mobile.chat.ChatActions;
+import com.example.ck_mobile.ui.customer.InterestRateViewActivity;
 import com.example.ck_mobile.ui.customer.KycStatusActivity;
 import com.example.ck_mobile.ui.customer.ServiceOrderActivity;
 import com.example.ck_mobile.ui.customer.TransactionHistoryActivity;
@@ -26,6 +27,7 @@ public final class DeepLinkRouter {
         TARGETS.put(ChatActions.MOVIE, ServiceOrderActivity.class);
         TARGETS.put(ChatActions.HOTEL, ServiceOrderActivity.class);
         TARGETS.put(ChatActions.KYC, KycStatusActivity.class);
+        TARGETS.put(ChatActions.RATES, InterestRateViewActivity.class);
     }
 
     private DeepLinkRouter() {

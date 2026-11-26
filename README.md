@@ -67,3 +67,18 @@ Các mã đích: `HISTORY, TRANSFER, DEPOSIT_WITHDRAW, BILL, TOPUP_PHONE, MOVIE,
 ## Quy ước Git
 
 Mỗi người một nhánh theo chức năng, mở Pull Request và review chéo trước khi gộp vào `main`.
+
+## Tạo tài khoản Officer demo (làm 1 lần)
+
+Rules chỉ cho Officer tạo khách hàng, nên Officer đầu tiên phải tạo thủ công trên Firebase Console:
+
+1. **Authentication → Users → Add user**: nhập email (vd `officer@tdtbank.vn`) và mật khẩu, sao chép **User UID**.
+2. **Firestore → collection `users` → Add document**, Document ID = UID vừa sao chép, các field (string):
+   `fullName`, `email`, `role = OFFICER`, `status = ACTIVE`.
+3. Đăng nhập app bằng tài khoản đó → màn hình Officer → menu ⋮ → **Nạp dữ liệu mẫu** (lãi suất, chi nhánh, khách demo `khach.demo@tdtbank.vn` / `Demo@123456`).
+4. Triển khai rules: `firebase deploy --only firestore:rules,storage`.
+
+## Chạy unit test và sinh sơ đồ
+
+- Test: `./gradlew testDebugUnitTest` (IntentMatcher, ChatActions, Gemini parse, MoneyUtils, UiText).
+- Sơ đồ lớp: `python3 docs/diagrams/generate_class_diagrams.py` (cần Graphviz `dot`), kết quả trong `docs/diagrams/` (có `class_all.png` toàn app).

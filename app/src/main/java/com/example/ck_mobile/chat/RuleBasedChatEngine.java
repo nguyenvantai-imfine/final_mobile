@@ -121,12 +121,12 @@ public class RuleBasedChatEngine implements ChatEngine {
                 for (InterestRate r : rates) {
                     sb.append(String.format(Locale.US, "\n• %d tháng: %.2f%%", r.getTermMonths(), r.getRate()));
                 }
-                post(cb, new BotReply(sb.toString(), ChatActions.ACCOUNTS));
+                post(cb, new BotReply(sb.toString(), ChatActions.RATES));
             }
 
             @Override
             public void onError(String message) {
-                post(cb, new BotReply("Không tra được lãi suất lúc này, vui lòng thử lại.", null));
+                post(cb, new BotReply("Không tra được lãi suất lúc này, vui lòng thử lại.", ChatActions.RATES));
             }
         });
     }

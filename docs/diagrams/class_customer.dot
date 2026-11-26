@@ -6,6 +6,8 @@ subgraph "cluster_Base" { label="Base"; style="rounded,filled"; fillcolor="#FAFA
 subgraph "cluster_Customer UI" { label="Customer UI"; style="rounded,filled"; fillcolor="#FAFAFA"; color="#BDBDBD"; fontsize=12;
 "TransactionHistoryActivity" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#FCE4EC"><B>TransactionHistoryActivity</B></TD></TR></TABLE>>];
 "ServiceOrderActivity" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#FCE4EC"><B>ServiceOrderActivity</B></TD></TR></TABLE>>];
+"InterestRateViewActivity" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#FCE4EC"><B>InterestRateViewActivity</B></TD></TR></TABLE>>];
+"KycStatusActivity" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#FCE4EC"><B>KycStatusActivity</B></TD></TR></TABLE>>];
 }
 subgraph "cluster_Adapter" { label="Adapter"; style="rounded,filled"; fillcolor="#FAFAFA"; color="#BDBDBD"; fontsize=12;
 "TransactionAdapter" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#F8BBD0"><B>TransactionAdapter</B></TD></TR></TABLE>>];
@@ -15,18 +17,23 @@ subgraph "cluster_ViewModel" { label="ViewModel"; style="rounded,filled"; fillco
 "TransactionHistoryViewModel" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#E3F2FD"><B>TransactionHistoryViewModel</B></TD></TR><TR><TD ALIGN="LEFT" BORDER="0">+ getFiltered()</TD></TR><TR><TD ALIGN="LEFT" BORDER="0">+ getMonths()</TD></TR><TR><TD ALIGN="LEFT" BORDER="0">+ getLoading()</TD></TR><TR><TD ALIGN="LEFT" BORDER="0">+ getError()</TD></TR><TR><TD ALIGN="LEFT" BORDER="0">+ load()</TD></TR><TR><TD ALIGN="LEFT" BORDER="0">…</TD></TR></TABLE>>];
 }
 subgraph "cluster_Repository" { label="Repository"; style="rounded,filled"; fillcolor="#FAFAFA"; color="#BDBDBD"; fontsize=12;
+"RateRepository" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#E8F5E9"><B>RateRepository</B></TD></TR><TR><TD ALIGN="LEFT" BORDER="0">+ loadRates()</TD></TR><TR><TD ALIGN="LEFT" BORDER="0">+ saveRates()</TD></TR></TABLE>>];
 "TransactionRepository" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#E8F5E9"><B>TransactionRepository</B></TD></TR><TR><TD ALIGN="LEFT" BORDER="0">+ loadByOwner()</TD></TR></TABLE>>];
 "ServiceOrderRepository" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#E8F5E9"><B>ServiceOrderRepository</B></TD></TR><TR><TD ALIGN="LEFT" BORDER="0">+ pay()</TD></TR></TABLE>>];
 "ServiceCatalog" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#E8F5E9"><B>ServiceCatalog</B></TD></TR><TR><TD ALIGN="LEFT" BORDER="0">+ movies()</TD></TR><TR><TD ALIGN="LEFT" BORDER="0">+ hotels()</TD></TR><TR><TD ALIGN="LEFT" BORDER="0">+ forType()</TD></TR></TABLE>>];
 }
 subgraph "cluster_Model" { label="Model"; style="rounded,filled"; fillcolor="#FAFAFA"; color="#BDBDBD"; fontsize=12;
+"InterestRate" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#F3E5F5"><B>InterestRate</B></TD></TR></TABLE>>];
 "TransactionRecord" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#F3E5F5"><B>TransactionRecord</B></TD></TR></TABLE>>];
 "ServiceItem" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#F3E5F5"><B>ServiceItem</B></TD></TR></TABLE>>];
 "Account" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#F3E5F5"><B>Account</B></TD></TR></TABLE>>];
 }
+"RateRepository" -> "InterestRate" [arrowhead=vee style=dashed color="#9E9E9E"];
 "ServiceCatalog" -> "ServiceItem" [arrowhead=vee style=dashed color="#9E9E9E"];
 "ServiceOrderRepository" -> "ServiceItem" [arrowhead=vee style=dashed color="#9E9E9E"];
 "TransactionRepository" -> "TransactionRecord" [arrowhead=vee style=dashed color="#9E9E9E"];
+"InterestRateViewActivity" -> "BaseSecureActivity" [arrowhead=empty];
+"KycStatusActivity" -> "BaseSecureActivity" [arrowhead=empty];
 "ServiceOrderActivity" -> "BaseSecureActivity" [arrowhead=empty];
 "ServiceOrderActivity" -> "ServiceOrderRepository" [arrowhead=none arrowtail=diamond dir=back];
 "ServiceOrderActivity" -> "ServiceItem" [arrowhead=vee];

@@ -1,8 +1,12 @@
-import re, sys, os
-ROOT='/home/claude/final_mobile'
-S='/tmp/claude-0/-home-claude/66633bff-00e3-569b-b91b-92d476f35b75/scratchpad/gen'
-files=[l.strip() for l in open(S+'/tv3_java.txt')]
-extra=['app/src/main/java/com/example/ck_mobile/ui/base/BaseSecureActivity.java','app/src/main/java/com/example/ck_mobile/model/UserProfile.java']
+"""Sinh sơ đồ lớp (DOT + PNG) từ mã nguồn Java. Chạy: python3 docs/diagrams/generate_class_diagrams.py
+Cần Graphviz (lệnh `dot`). Không phụ thuộc đường dẫn cố định."""
+import re, sys, os, glob, subprocess
+HERE=os.path.dirname(os.path.abspath(__file__))
+ROOT=os.path.abspath(os.path.join(HERE,'..','..'))
+S=HERE
+JAVA=os.path.join(ROOT,'app','src','main','java')
+files=sorted(os.path.relpath(f,ROOT) for f in glob.glob(JAVA+'/**/*.java',recursive=True))
+extra=[]
 EXCL={'Constants','MoneyUtils','ImageUtils','UiText','RepoCallback','ChatActions','ChatIntent','ChatPrefs','ServiceCatalog','AuditRepository'}
 decl=re.compile(r'^\s*(?:public\s+|abstract\s+|final\s+)*(class|interface|enum)\s+(\w+)(?:<[^>]*>)?(?:\s+extends\s+([\w.]+)(?:<[^>]*>)?)?(?:\s+implements\s+([\w.,\s<>]+?))?\s*\{',re.M)
 types={}   # name -> dict
@@ -28,7 +32,9 @@ for f in files+extra:
 print('declared types in TV3 files (incl nested):',total_all,file=sys.stderr)
 
 import copy
-SETS={'class_officer': ['BaseSecureActivity', 'CustomerListActivity', 'CustomerFormActivity', 'InterestRateActivity', 'EkycListActivity', 'EkycReviewActivity', 'EkycRegisterActivity', 'KycStatusActivity', 'CustomerAdapter', 'KycAdapter', 'CustomerListViewModel', 'CustomerRepository', 'KycRepository', 'RateRepository', 'SeedRepository', 'AuditRepository', 'UserProfile', 'KycRecord', 'InterestRate'], 'class_customer': ['BaseSecureActivity', 'TransactionHistoryActivity', 'ServiceOrderActivity', 'TransactionAdapter', 'ServiceItemAdapter', 'TransactionHistoryViewModel', 'TransactionRepository', 'ServiceOrderRepository', 'ServiceCatalog', 'TransactionRecord', 'ServiceItem', 'Account'], 'class_chat': ['BaseSecureActivity', 'ChatActivity', 'ChatAdapter', 'ChatViewModel', 'ChatEngine', 'RuleBasedChatEngine', 'GeminiChatEngine', 'HybridChatEngine', 'IntentMatcher', 'BotReply', 'ChatPrefs', 'ChatActions', 'ChatRepository', 'ChatMessage', 'DeepLinkRouter', 'RateRepository', 'TransactionRepository']}
+SETS0={'class_officer': ['BaseSecureActivity', 'CustomerListActivity', 'CustomerFormActivity', 'InterestRateActivity', 'EkycListActivity', 'EkycReviewActivity', 'EkycRegisterActivity', 'KycStatusActivity', 'CustomerAdapter', 'KycAdapter', 'CustomerListViewModel', 'CustomerRepository', 'KycRepository', 'RateRepository', 'SeedRepository', 'AuditRepository', 'UserProfile', 'KycRecord', 'InterestRate'], 'class_customer': ['BaseSecureActivity', 'TransactionHistoryActivity', 'ServiceOrderActivity', 'InterestRateViewActivity', 'RateRepository', 'InterestRate', 'KycStatusActivity', 'TransactionAdapter', 'ServiceItemAdapter', 'TransactionHistoryViewModel', 'TransactionRepository', 'ServiceOrderRepository', 'ServiceCatalog', 'TransactionRecord', 'ServiceItem', 'Account'], 'class_chat': ['BaseSecureActivity', 'ChatActivity', 'ChatAdapter', 'ChatViewModel', 'ChatEngine', 'RuleBasedChatEngine', 'GeminiChatEngine', 'HybridChatEngine', 'IntentMatcher', 'BotReply', 'ChatPrefs', 'ChatActions', 'ChatRepository', 'ChatMessage', 'DeepLinkRouter', 'RateRepository', 'TransactionRepository']}
+SETS=dict(SETS0)
+SETS['class_all']=sorted(types)
 for NAME,NODES in SETS.items():
     shown=[n for n in NODES if n in types]
 
@@ -79,9 +85,10 @@ for NAME,NODES in SETS.items():
         if k=='dep' and lb in('Adapter','Base') : continue
         if k=='dep' and la in('Officer UI','Customer UI') and lb!='Repository' and lb!='ViewModel' and b not in('DeepLinkRouter',): continue
         keep[(a,b,k)]=1
+    if NAME=='class_all': keep={k:v for k,v in keep.items() if k[2]!='dep'}
     edges=keep
     order=['Base','Officer UI','Customer UI','Adapter','ViewModel','Repository','Chat','Model','Utils']
-    out=['digraph G { rankdir=TB; compound=true; newrank=true; fontname="DejaVu Sans"; nodesep=0.35; ranksep=0.7; splines=true;',
+    out=['digraph G { rankdir='+('LR' if NAME=='class_all' else 'TB')+'; compound=true; newrank=true; fontname="DejaVu Sans"; nodesep=0.35; ranksep=0.7; splines=true;',
      'node [shape=plain fontname="DejaVu Sans" fontsize=10]; edge [fontname="DejaVu Sans" fontsize=9 color="#555555"];']
     for L in order:
         ns=[n for n in shown if layer(types[n])==L]
@@ -91,7 +98,7 @@ for NAME,NODES in SETS.items():
             t=types[n]
             stereo='«interface»' if t['kind']=='interface' else ('«abstract»' if t['abstract'] else ('«enum»' if t['kind']=='enum' else ''))
             rows=''
-            if L not in('Officer UI','Customer UI','Adapter','Model'):
+            if NAME!='class_all' and L not in('Officer UI','Customer UI','Adapter','Model'):
                 rows=''.join(f'<TR><TD ALIGN="LEFT" BORDER="0">+ {p}()</TD></TR>' for p in t['pubs'][:5])
                 if len(t['pubs'])>5: rows+='<TR><TD ALIGN="LEFT" BORDER="0">…</TD></TR>'
             head=f'<TR><TD BGCOLOR="{col[L]}"><B>{n}</B>' + (f'<BR/><I>{stereo}</I>' if stereo else '') + '</TD></TR>'
@@ -102,6 +109,7 @@ for NAME,NODES in SETS.items():
         out.append(f'"{a}" -> "{b}" [{style[k]}];')
     out.append('}')
     open(S+'/'+NAME+'.dot','w',encoding='utf-8').write('\n'.join(out))
+    subprocess.run(['dot','-Tpng','-Gdpi=130',S+'/'+NAME+'.dot','-o',S+'/'+NAME+'.png'],check=True)
     print(NAME,'nodes',len(shown),'edges',len(edges),file=sys.stderr)
     from collections import Counter
     print(Counter(k for _,_,k in edges),file=sys.stderr)

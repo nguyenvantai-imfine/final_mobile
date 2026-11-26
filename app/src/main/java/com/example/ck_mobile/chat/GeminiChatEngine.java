@@ -40,7 +40,7 @@ public class GeminiChatEngine implements ChatEngine {
                     + "KHÔNG bịa số dư, lãi suất hay dữ liệu cá nhân: nếu cần số liệu thật, hãy hướng người dùng mở chức năng tương ứng. "
                     + "KHÔNG bao giờ yêu cầu mật khẩu hay mã OTP. Từ chối lịch sự các câu hỏi ngoài lĩnh vực ngân hàng. "
                     + "Nếu có một chức năng phù hợp, kết thúc câu trả lời bằng đúng một thẻ [[ACTION:MÃ]] với MÃ thuộc: "
-                    + "HISTORY, TRANSFER, DEPOSIT_WITHDRAW, BILL, TOPUP_PHONE, MOVIE, HOTEL, BRANCHES, ACCOUNTS, KYC.";
+                    + "HISTORY, TRANSFER, DEPOSIT_WITHDRAW, BILL, TOPUP_PHONE, MOVIE, HOTEL, BRANCHES, ACCOUNTS, KYC, RATES.";
 
     private static final Pattern ACTION_TAG = Pattern.compile("\\[\\[ACTION:([A-Z_]+)\\]\\]");
     private static final int MAX_HISTORY = 10;

@@ -13,6 +13,7 @@ public final class ChatActions {
     public static final String BRANCHES = "BRANCHES";
     public static final String ACCOUNTS = "ACCOUNTS";
     public static final String KYC = "KYC";
+    public static final String RATES = "RATES";
 
     private ChatActions() {
     }
@@ -45,6 +46,8 @@ public final class ChatActions {
                 return "Quản lý tài khoản";
             case KYC:
                 return "Trạng thái eKYC";
+            case RATES:
+                return "Xem lãi suất tiết kiệm";
             default:
                 return null;
         }
