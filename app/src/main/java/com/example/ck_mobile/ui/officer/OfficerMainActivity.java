@@ -82,8 +82,12 @@ public class OfficerMainActivity extends BaseSecureActivity {
         // Nút bàn giao ca / đăng xuất -> signOut + FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK + finish()
         View btnLogout = findViewById(R.id.btn_officer_logout_switch);
         if (btnLogout != null) {
-            btnLogout.setOnClickListener(v ->
-                    AuthSessionHelper.signOutAndGoLogin(this, "Đã đăng xuất khỏi phiên làm việc."));
+            btnLogout.setOnClickListener(v -> {
+                String email = (auth != null && auth.getCurrentUser() != null)
+                        ? auth.getCurrentUser().getEmail()
+                        : null;
+                showLogoutConfirmDialog(email);
+            });
         }
 
         // Tương tác trực tiếp trên thẻ hàng đợi

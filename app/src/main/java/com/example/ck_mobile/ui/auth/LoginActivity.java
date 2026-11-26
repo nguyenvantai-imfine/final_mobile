@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ck_mobile.R;
 import com.example.ck_mobile.utils.AuthSessionHelper;
+import com.example.ck_mobile.utils.SessionManager;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 import com.google.firebase.FirebaseNetworkException;
 import com.google.firebase.auth.FirebaseAuth;
@@ -77,6 +78,12 @@ public class LoginActivity extends AppCompatActivity {
 
         bindViews();
         bindEvents();
+        String logoutReason = getIntent().getStringExtra(SessionManager.EXTRA_LOGOUT_REASON);
+        if (SessionManager.REASON_TIMEOUT.equals(logoutReason)) {
+            showBannerError("Phiên làm việc đã hết hạn sau 10 phút. Vui lòng đăng nhập lại.");
+        } else if (SessionManager.REASON_TASK_REMOVED.equals(logoutReason)) {
+            showBannerError("Phiên đăng nhập đã kết thúc do ứng dụng bị đóng khỏi bộ nhớ tạm.");
+        }
     }
 
     private void bindViews() {
@@ -294,6 +301,7 @@ public class LoginActivity extends AppCompatActivity {
                     // 5. Điều hướng theo role
                     failedAttempts = 0;
                     setLoading(false);
+                    SessionManager.getInstance(this).startSession();
                     AuthSessionHelper.navigateByRole(this, normalizedRole);
                 })
                 .addOnFailureListener(this, e -> {

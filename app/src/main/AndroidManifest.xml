@@ -43,6 +43,27 @@
             android:name=".ui.officer.OfficerMainActivity"
             android:exported="false" />
 
+        <service
+            android:name=".utils.SessionWatchService"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.customer.CustomerAccountsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.customer.CheckingDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.customer.SavingDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.customer.MortgageDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.customer.MortgageScheduleActivity"
+            android:exported="false" />
+
+
     </application>
 
 </manifest>

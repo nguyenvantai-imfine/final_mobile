@@ -1,0 +1,25 @@
+rules_version = '2';
+
+// Ảnh eKYC: kyc/{uid}/face_*.jpg. Triển khai: firebase deploy --only storage
+// Lưu ý: dùng firestore.get() nên lần đầu triển khai Firebase có thể yêu cầu cấp quyền
+// "Firebase Rules Firestore Service Agent" cho Storage Rules (làm theo gợi ý trên console).
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    function isOfficer() {
+      return request.auth != null
+        && firestore.get(/databases/(default)/documents/users/$(request.auth.uid)).data.role == 'OFFICER';
+    }
+
+    match /kyc/{uid}/{file} {
+      allow read: if request.auth != null && (request.auth.uid == uid || isOfficer());
+      allow write: if isOfficer()
+        && request.resource.size < 5 * 1024 * 1024
+        && request.resource.contentType.matches('image/.*');
+    }
+
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

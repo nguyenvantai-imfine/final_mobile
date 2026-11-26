@@ -1,0 +1,116 @@
+rules_version = '2';
+
+// TDT Bank – Firestore Security Rules (v3, khớp erd.mmd và SCHEMA.md).
+// Triển khai: firebase deploy --only firestore
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() { return request.auth != null; }
+    function me() { return get(/databases/$(database)/documents/users/$(request.auth.uid)).data; }
+    function isOfficer() { return signedIn() && me().role == 'OFFICER' && me().status != 'LOCKED'; }
+    function isActiveUser() { return signedIn() && me().status != 'LOCKED'; }
+    function isOwner(uid) { return signedIn() && request.auth.uid == uid; }
+    function onlyChanges(keys) { return request.resource.data.diff(resource.data).affectedKeys().hasOnly(keys); }
+
+    // ---- users ----
+    match /users/{uid} {
+      allow read: if isOwner(uid) || isOfficer();
+      allow create: if isOfficer() && request.resource.data.role == 'CUSTOMER';
+      // Customer chỉ sửa họ tên + địa chỉ của mình; Officer sửa mọi trường (kể cả khóa, kycStatus)
+      allow update: if isOfficer() || (isOwner(uid) && onlyChanges(['fullName', 'address']));
+      allow delete: if false;
+
+      match /chat_messages/{id} {
+        allow read, create: if isOwner(uid);
+        allow update, delete: if false;
+      }
+    }
+
+    // ---- accounts ----
+    match /accounts/{id} {
+      allow read: if isOfficer() || isOwner(resource.data.ownerUid);
+      allow create: if isOfficer();
+      // Customer chỉ đổi balance tài khoản CỦA MÌNH, không âm.
+      // HẠN CHẾ (không có Cloud Functions): customer vẫn tự cộng được tiền cho mình – ghi rõ trong báo cáo.
+      allow update: if isOfficer()
+        || (isActiveUser() && isOwner(resource.data.ownerUid)
+            && onlyChanges(['balance'])
+            && request.resource.data.balance is int
+            && request.resource.data.balance >= 0);
+      allow delete: if false;
+
+      // CHUYỂN TIỀN CHO NGƯỜI KHÁC (bỏ comment nếu cần demo; ĐÂY LÀ LỖ HỔNG CÓ CHỦ ĐÍCH – xem SCHEMA.md §7):
+      // allow update: if isActiveUser() && onlyChanges(['balance'])
+      //   && request.resource.data.balance > resource.data.balance
+      //   && request.resource.data.balance - resource.data.balance <= 500000000;
+    }
+
+    // ---- account_lookup: tra tên chủ tài khoản khi chuyển tiền (chỉ get, cấm list) ----
+    match /account_lookup/{accountNumber} {
+      allow get: if signedIn();
+      allow list: if false;
+      allow write: if isOfficer();
+    }
+
+    // ---- transactions: bất biến sau khi tạo ----
+    match /transactions/{id} {
+      allow read: if isOfficer() || isOwner(resource.data.ownerUid);
+      allow create: if isActiveUser()
+        && (isOfficer() || isOwner(request.resource.data.ownerUid))
+        && request.resource.data.amount is int
+        && request.resource.data.amount > 0;
+      allow update, delete: if false;
+    }
+
+    // ---- orders (hóa đơn, nạp ĐT, vé, khách sạn...) ----
+    match /orders/{id} {
+      allow read: if isOfficer() || isOwner(resource.data.ownerUid);
+      allow create: if isActiveUser() && isOwner(request.resource.data.ownerUid);
+      // Hóa đơn UNPAID -> PAID (điện/nước tra cứu mock); đơn đã PAID thì bất biến
+      allow update: if isActiveUser() && isOwner(resource.data.ownerUid)
+        && resource.data.status == 'UNPAID'
+        && onlyChanges(['status', 'transactionId', 'paidAt']);
+      allow delete: if false;
+    }
+
+    // ---- otp: id tự sinh, có trường userId; chỉ lưu hash ----
+    match /otp/{id} {
+      allow read: if isOwner(resource.data.userId);
+      allow create: if isActiveUser() && isOwner(request.resource.data.userId);
+      allow update: if isOwner(resource.data.userId) && onlyChanges(['attempts', 'status']);
+      allow delete: if false;
+    }
+
+    // ---- config (hạn mức, ngưỡng face check): ai đăng nhập cũng đọc, chỉ Officer sửa ----
+    match /config/{id} {
+      allow read: if signedIn();
+      allow write: if isOfficer();
+    }
+
+    match /rates/{id}    { allow read: if signedIn(); allow write: if isOfficer(); }
+    match /branches/{id} { allow read: if signedIn(); allow write: if isOfficer(); }
+    match /banks/{id}    { allow read: if signedIn(); allow write: if isOfficer(); }
+
+    // ---- kyc (id = uid khách) ----
+    match /kyc/{uid} {
+      allow read: if isOfficer() || isOwner(uid);
+      allow write: if isOfficer();
+    }
+
+    // ---- audit_logs: chỉ thêm, chỉ Officer đọc ----
+    match /audit_logs/{id} {
+      allow read: if isOfficer();
+      allow create: if isOfficer();
+      allow update, delete: if false;
+    }
+
+    // ---- login_lookup: tra email từ SĐT / STK trước khi đăng nhập ----
+    match /login_lookup/{id} {
+      allow get: if true;
+      allow list: if false;
+      allow write: if isOfficer();
+    }
+
+    match /{document=**} { allow read, write: if false; }
+  }
+}
