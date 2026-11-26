@@ -8,167 +8,177 @@
     android:background="#A62F3132"
     android:clickable="true"
     android:focusable="true"
-    android:padding="16dp">
+    android:padding="20dp">
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card_logout_dialog"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:maxWidth="340dp"
-        app:cardBackgroundColor="#FFFFFF"
-        app:cardCornerRadius="20dp"
-        app:cardElevation="12dp"
-        app:strokeWidth="0dp">
+        android:fillViewport="false"
+        android:overScrollMode="ifContentScrolls"
+        android:scrollbars="none">
 
-        <LinearLayout
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_logout_dialog"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
-            android:padding="24dp">
+            android:layout_gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardBackgroundColor="#FFFFFF"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="12dp"
+            app:strokeWidth="0dp">
 
-            <!-- Nút đóng X góc trên phải -->
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageButton
-                    android:id="@+id/btn_close_x"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_gravity="end|top"
-                    android:background="@drawable/bg_circle_surface_low"
-                    android:contentDescription="Đóng hộp thoại"
-                    android:padding="7dp"
-                    android:src="@drawable/ic_close_24"
-                    app:tint="#574149" />
-            </FrameLayout>
-
-            <!-- Vòng tròn biểu tượng đăng xuất 64x64dp -->
-            <FrameLayout
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/bg_circle_primary_fixed">
-
-                <ImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_gravity="center"
-                    android:contentDescription="Đăng xuất"
-                    android:src="@drawable/ic_logout_24"
-                    app:tint="#A50064" />
-            </FrameLayout>
-
-            <!-- Tiêu đề -->
-            <TextView
-                android:id="@+id/tv_dialog_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="6dp"
-                android:gravity="center"
-                android:text="Đăng xuất tài khoản?"
-                android:textColor="#2F3132"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <!-- Mô tả phụ -->
-            <TextView
-                android:id="@+id/tv_dialog_desc"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:gravity="center"
-                android:lineSpacingExtra="3dp"
-                android:text="Bạn sẽ cần đăng nhập lại hoặc xác thực sinh trắc học (FaceID / Vân tay) cho lần truy cập tiếp theo. Bạn có chắc chắn muốn đăng xuất phiên làm việc này?"
-                android:textColor="#574149"
-                android:textSize="14sp" />
-
-            <!-- Box thông tin tài khoản đang kết nối -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
-                android:background="@drawable/bg_rounded_12_surface_low"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingHorizontal="12dp"
-                android:paddingVertical="10dp">
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="24dp">
 
+                <!-- Nút đóng X góc trên phải -->
                 <FrameLayout
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageButton
+                        android:id="@+id/btn_close_x"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_gravity="end|top"
+                        android:background="@drawable/bg_circle_surface_low"
+                        android:contentDescription="Đóng hộp thoại"
+                        android:padding="7dp"
+                        android:src="@drawable/ic_close_24"
+                        app:tint="#574149" />
+                </FrameLayout>
+
+                <!-- Vòng tròn biểu tượng đăng xuất 64x64dp -->
+                <FrameLayout
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="16dp"
                     android:background="@drawable/bg_circle_primary_fixed">
 
                     <ImageView
-                        android:layout_width="15dp"
-                        android:layout_height="15dp"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
                         android:layout_gravity="center"
-                        android:contentDescription="Bảo mật phiên"
-                        android:src="@drawable/ic_shield_24"
-                        app:tint="#7B0049" />
+                        android:contentDescription="Đăng xuất"
+                        android:src="@drawable/ic_logout_24"
+                        app:tint="#A50064" />
                 </FrameLayout>
 
+                <!-- Tiêu đề -->
                 <TextView
-                    android:id="@+id/tv_session_account_info"
-                    android:layout_width="0dp"
+                    android:id="@+id/tv_dialog_title"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_weight="1"
-                    android:lineSpacingExtra="2dp"
+                    android:layout_marginBottom="6dp"
+                    android:gravity="center"
+                    android:text="Đăng xuất tài khoản?"
+                    android:textColor="#2F3132"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <!-- Mô tả phụ -->
+                <TextView
+                    android:id="@+id/tv_dialog_desc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:gravity="center"
+                    android:lineSpacingExtra="3dp"
+                    android:text="Bạn sẽ cần đăng nhập lại hoặc xác thực sinh trắc học (FaceID / Vân tay) cho lần truy cập tiếp theo. Bạn có chắc chắn muốn đăng xuất phiên làm việc này?"
                     android:textColor="#574149"
-                    android:textSize="12sp"
-                    tools:text="Tài khoản tai.nv@tdtu.edu.vn sẽ được ngắt kết nối an toàn." />
+                    android:textSize="14sp" />
+
+                <!-- Box thông tin tài khoản đang kết nối -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="24dp"
+                    android:background="@drawable/bg_rounded_12_surface_low"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="10dp">
+
+                    <FrameLayout
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:background="@drawable/bg_circle_primary_fixed">
+
+                        <ImageView
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_gravity="center"
+                            android:contentDescription="Bảo mật phiên"
+                            android:src="@drawable/ic_shield_24"
+                            app:tint="#7B0049" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/tv_session_account_info"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_weight="1"
+                        android:lineSpacingExtra="2dp"
+                        android:textColor="#574149"
+                        android:textSize="12sp"
+                        tools:text="Tài khoản tai.nv@tdtu.edu.vn sẽ được ngắt kết nối an toàn." />
+                </LinearLayout>
+
+                <!-- Cụm 2 nút hành động: Hủy bỏ (trái) - Đăng xuất (phải) -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="46dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_cancel_logout"
+                        style="@style/Widget.Material3.Button.TonalButton"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="6dp"
+                        android:layout_weight="1"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:text="Hủy bỏ"
+                        android:textAllCaps="false"
+                        android:textColor="#574149"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        app:backgroundTint="#F3F3F5"
+                        app:cornerRadius="12dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_confirm_logout"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="6dp"
+                        android:layout_weight="1"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:text="Đăng xuất"
+                        android:textAllCaps="false"
+                        android:textColor="#FFFFFF"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        app:backgroundTint="#A50064"
+                        app:cornerRadius="12dp"
+                        app:icon="@drawable/ic_power_24"
+                        app:iconGravity="textStart"
+                        app:iconPadding="6dp"
+                        app:iconSize="18dp"
+                        app:iconTint="#FFFFFF" />
+                </LinearLayout>
             </LinearLayout>
-
-            <!-- Cụm 2 nút hành động: Hủy bỏ (trái) - Đăng xuất (phải) -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="46dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:weightSum="2">
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_cancel_logout"
-                    style="@style/Widget.Material3.Button.TonalButton"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginEnd="6dp"
-                    android:layout_weight="1"
-                    android:insetTop="0dp"
-                    android:insetBottom="0dp"
-                    android:text="Hủy bỏ"
-                    android:textAllCaps="false"
-                    android:textColor="#574149"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    app:backgroundTint="#F3F3F5"
-                    app:cornerRadius="12dp" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_confirm_logout"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="6dp"
-                    android:layout_weight="1"
-                    android:insetTop="0dp"
-                    android:insetBottom="0dp"
-                    android:text="Đăng xuất"
-                    android:textAllCaps="false"
-                    android:textColor="#FFFFFF"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    app:backgroundTint="#A50064"
-                    app:cornerRadius="12dp"
-                    app:icon="@drawable/ic_power_24"
-                    app:iconGravity="textStart"
-                    app:iconPadding="6dp"
-                    app:iconSize="18dp"
-                    app:iconTint="#FFFFFF" />
-            </LinearLayout>
-        </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
+        </com.google.android.material.card.MaterialCardView>
+    </ScrollView>
 </FrameLayout>

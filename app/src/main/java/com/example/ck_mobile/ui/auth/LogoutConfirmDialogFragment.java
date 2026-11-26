@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.text.Html;
 import android.text.Spanned;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +17,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
-import com.example.ck_mobile.R;
 import com.example.ck_mobile.databinding.DialogLogoutConfirmBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -49,7 +49,7 @@ public class LogoutConfirmDialogFragment extends DialogFragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setStyle(STYLE_NO_FRAME, android.R.style.Theme_Translucent_NoTitleBar_Fullscreen);
+        setStyle(STYLE_NO_FRAME, android.R.style.Theme_Translucent_NoTitleBar);
     }
 
     @NonNull
@@ -59,6 +59,18 @@ public class LogoutConfirmDialogFragment extends DialogFragment {
         Window window = dialog.getWindow();
         if (window != null) {
             window.requestFeature(Window.FEATURE_NO_TITLE);
+            window.setBackgroundDrawableResource(android.R.color.transparent);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        }
+        return dialog;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Dialog dialog = getDialog();
+        if (dialog != null && dialog.getWindow() != null) {
+            Window window = dialog.getWindow();
             window.setLayout(
                     ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.MATCH_PARENT
@@ -66,7 +78,6 @@ public class LogoutConfirmDialogFragment extends DialogFragment {
             window.setBackgroundDrawableResource(android.R.color.transparent);
             window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
         }
-        return dialog;
     }
 
     @Nullable
@@ -95,7 +106,7 @@ public class LogoutConfirmDialogFragment extends DialogFragment {
         }
 
         String htmlText = "Tài khoản <font color=\"#7B0049\"><b>"
-                + android.text.TextUtils.htmlEncode(email)
+                + TextUtils.htmlEncode(email)
                 + "</b></font> sẽ được ngắt kết nối an toàn.";
         Spanned spanned = Html.fromHtml(htmlText, Html.FROM_HTML_MODE_LEGACY);
         binding.tvSessionAccountInfo.setText(spanned);

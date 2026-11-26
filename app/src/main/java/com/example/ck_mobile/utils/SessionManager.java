@@ -100,7 +100,8 @@ public final class SessionManager {
     public void onTaskRemovedFromRecents() {
         prefs.edit()
                 .putBoolean(KEY_SESSION_ACTIVE, false)
-                .apply();
+                .commit();
+        cancelTimer();
         FirebaseAuth.getInstance().signOut();
     }
 

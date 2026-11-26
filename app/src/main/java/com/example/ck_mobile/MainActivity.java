@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ck_mobile.ui.auth.LoginActivity;
 import com.example.ck_mobile.utils.AuthSessionHelper;
+import com.example.ck_mobile.utils.SessionManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -37,7 +38,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void routeStartupSession() {
-        if (isFinishing() || isDestroyed()) return;
+        if (isFinishing() || isDestroyed()) {
+            return;
+        }
 
         FirebaseUser currentUser = auth.getCurrentUser();
         if (currentUser == null) {
@@ -45,11 +48,26 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        // Giữ phiên: đọc lại role từ Firestore và vào thẳng màn hình tương ứng
+        SessionManager sessionManager = SessionManager.getInstance(this);
+        if (sessionManager.wasRemovedFromRecents()) {
+            sessionManager.logoutAndRedirectToLogin(SessionManager.REASON_TASK_REMOVED);
+            finish();
+            return;
+        }
+        if (sessionManager.isSessionExpired()) {
+            sessionManager.logoutAndRedirectToLogin(SessionManager.REASON_TIMEOUT);
+            finish();
+            return;
+        }
+
         db.collection("users")
                 .document(currentUser.getUid())
                 .get()
                 .addOnSuccessListener(this, snapshot -> {
+                    if (isFinishing() || isDestroyed()) {
+                        return;
+                    }
+
                     if (snapshot == null || !snapshot.exists()) {
                         AuthSessionHelper.signOutAndGoLogin(this, "Tài khoản chưa được cấp hồ sơ.");
                         return;
@@ -70,13 +88,17 @@ public class MainActivity extends AppCompatActivity {
                     String normalizedRole = role.trim().toUpperCase(Locale.ROOT);
                     if (AuthSessionHelper.ROLE_CUSTOMER.equals(normalizedRole)
                             || AuthSessionHelper.ROLE_OFFICER.equals(normalizedRole)) {
+                        sessionManager.startSession();
                         AuthSessionHelper.navigateByRole(this, normalizedRole);
                     } else {
                         AuthSessionHelper.signOutAndGoLogin(this, "Vai trò tài khoản không hợp lệ.");
                     }
                 })
-                .addOnFailureListener(this, e ->
-                        AuthSessionHelper.signOutAndGoLogin(this, "Không thể kiểm tra phiên đăng nhập."));
+                .addOnFailureListener(this, e -> {
+                    if (!isFinishing() && !isDestroyed()) {
+                        AuthSessionHelper.signOutAndGoLogin(this, "Không thể kiểm tra phiên đăng nhập.");
+                    }
+                });
     }
 
     private void goToLogin() {

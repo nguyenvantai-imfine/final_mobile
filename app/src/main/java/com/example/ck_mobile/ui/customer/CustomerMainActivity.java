@@ -1,5 +1,6 @@
 package com.example.ck_mobile.ui.customer;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -16,7 +17,6 @@ public class CustomerMainActivity extends BaseSecureActivity {
     private TextView tvCustomerName;
     private TextView tvTotalBalance;
     private boolean isBalanceVisible = true;
-    private static final String BALANCE_FORMATTED = "45.850.000";
 
     @Override
     protected String getRequiredRole() {
@@ -37,7 +37,7 @@ public class CustomerMainActivity extends BaseSecureActivity {
 
     private void loadCustomerInfoFromFirestore() {
         FirebaseUser currentUser = auth.getCurrentUser();
-        if (currentUser == null) return;
+        if (currentUser == null || tvCustomerName == null) return;
 
         String fallbackEmail = currentUser.getEmail() != null ? currentUser.getEmail() : "";
         db.collection("users")
@@ -65,11 +65,42 @@ public class CustomerMainActivity extends BaseSecureActivity {
 
     private void bindCustomerActions() {
         View btnToggleBalance = findViewById(R.id.btn_toggle_balance);
-        if (btnToggleBalance != null) {
+        if (btnToggleBalance != null && tvTotalBalance != null) {
+            final String initialBalanceText = tvTotalBalance.getText().toString();
             btnToggleBalance.setOnClickListener(v -> {
                 isBalanceVisible = !isBalanceVisible;
-                tvTotalBalance.setText(isBalanceVisible ? BALANCE_FORMATTED : "••••••••");
+                tvTotalBalance.setText(isBalanceVisible ? initialBalanceText : "••••••••");
             });
+        }
+
+        View btnManageAccounts = findViewById(R.id.btn_manage_accounts);
+        if (btnManageAccounts != null) {
+            btnManageAccounts.setOnClickListener(v ->
+                    startActivity(new Intent(this, CustomerAccountsActivity.class)));
+        }
+
+        View navAccounts = findViewById(R.id.nav_cust_accounts);
+        if (navAccounts != null) {
+            navAccounts.setOnClickListener(v ->
+                    startActivity(new Intent(this, CustomerAccountsActivity.class)));
+        }
+
+        View cardChecking = findViewById(R.id.card_acc_checking);
+        if (cardChecking != null) {
+            cardChecking.setOnClickListener(v ->
+                    startActivity(new Intent(this, CheckingDetailActivity.class)));
+        }
+
+        View cardSaving = findViewById(R.id.card_acc_saving);
+        if (cardSaving != null) {
+            cardSaving.setOnClickListener(v ->
+                    startActivity(new Intent(this, SavingDetailActivity.class)));
+        }
+
+        View cardMortgage = findViewById(R.id.card_acc_mortgage);
+        if (cardMortgage != null) {
+            cardMortgage.setOnClickListener(v ->
+                    startActivity(new Intent(this, MortgageDetailActivity.class)));
         }
 
         int[] developingIds = {
@@ -81,11 +112,8 @@ public class CustomerMainActivity extends BaseSecureActivity {
                 R.id.btn_quick_transfer,
                 R.id.btn_quick_pay_bill,
                 R.id.btn_quick_scan_qr,
-                R.id.btn_manage_accounts,
-                R.id.card_acc_checking,
-                R.id.card_acc_saving,
-                R.id.card_acc_mortgage,
                 R.id.btn_all_utilities,
+                R.id.btn_all_transactions,
                 R.id.util_electricity,
                 R.id.util_water,
                 R.id.util_topup_phone,
@@ -94,12 +122,9 @@ public class CustomerMainActivity extends BaseSecureActivity {
                 R.id.util_hotel,
                 R.id.util_shopping,
                 R.id.util_branches,
-                R.id.btn_all_transactions,
                 R.id.tx_item_1,
                 R.id.tx_item_2,
                 R.id.tx_item_3,
-                R.id.nav_cust_home,
-                R.id.nav_cust_accounts,
                 R.id.nav_cust_utilities,
                 R.id.nav_cust_chatbot,
                 R.id.nav_cust_profile
