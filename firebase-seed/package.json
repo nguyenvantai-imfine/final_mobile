@@ -1,0 +1,9 @@
+{
+  "name": "firebase-seed",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Nạp dữ liệu tham chiếu và tạo Officer đầu tiên cho TDT Bank",
+  "dependencies": {
+    "firebase-admin": "^13.0.0"
+  }
+}

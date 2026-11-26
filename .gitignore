@@ -13,3 +13,7 @@
 .externalNativeBuild
 .cxx
 local.properties
+firebase-seed/serviceAccountKey.json
+firebase-seed/node_modules/
+*-firebase-adminsdk-*.json
+serviceAccountKey*.json
