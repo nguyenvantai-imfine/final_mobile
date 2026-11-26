@@ -1,0 +1,13 @@
+digraph N { rankdir=LR; nodesep=0.3; ranksep=0.7; fontname="DejaVu Sans";
+node [shape=box style="rounded,filled" fontname="DejaVu Sans" fontsize=11 fillcolor="#FFFFFF" color="#757575"]; edge [fontname="DejaVu Sans" fontsize=9 color="#555555"];
+login [label="Đăng nhập\n(LoginActivity)" fillcolor="#ECEFF1"];
+oh [label="Trang chủ Officer" fillcolor="#FCE4EC"]; ch [label="Trang chủ Customer" fillcolor="#E3F2FD"];
+login -> oh [label="role OFFICER"]; login -> ch [label="role CUSTOMER"];
+oh -> cl [label="KPI khách hàng"]; oh -> cf [label="Mở tài khoản"]; oh -> ir [label="Lãi suất"]; oh -> er [label="Đăng ký sinh trắc"]; oh -> el [label="Duyệt eKYC"];
+cl [label="Danh sách\nkhách hàng" fillcolor="#FCE4EC"]; cf [label="Mở / sửa / khóa\nkhách hàng" fillcolor="#FCE4EC"]; ir [label="Lãi suất\ntiết kiệm" fillcolor="#FCE4EC"]; er [label="Đăng ký\nsinh trắc" fillcolor="#FCE4EC"]; el [label="Danh sách\nhồ sơ eKYC" fillcolor="#FCE4EC"]; ev [label="Chi tiết hồ sơ\n(Duyệt / Từ chối)" fillcolor="#FCE4EC"];
+cl -> cf [label="chọn khách / thêm"]; el -> ev [label="chọn hồ sơ"];
+ch -> th [label="Xem tất cả giao dịch"]; ch -> so1 [label="Ô Phim"]; ch -> so2 [label="Ô Khách sạn"]; ch -> bot [label="Chatbot"]; ch -> ks [label="Ảnh đại diện"];
+th [label="Lịch sử\ngiao dịch" fillcolor="#E3F2FD"]; so1 [label="Mua vé phim" fillcolor="#E3F2FD"]; so2 [label="Đặt khách sạn" fillcolor="#E3F2FD"]; ks [label="Trạng thái eKYC" fillcolor="#E3F2FD"]; bot [label="Chatbot" fillcolor="#FFF8E1"];
+bot -> th [style=dashed label="deep link"]; bot -> so1 [style=dashed]; bot -> so2 [style=dashed]; bot -> ks [style=dashed];
+bot -> other [style=dotted label="đăng ký sau"]; other [label="Chuyển tiền, nạp/rút, hóa đơn,\nchi nhánh (TV1/TV2)" fillcolor="#F5F5F5" style="rounded,dashed"];
+}

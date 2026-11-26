@@ -1,0 +1,25 @@
+digraph A { rankdir=TB; nodesep=0.4; ranksep=0.55; fontname="DejaVu Sans"; compound=true;
+node [shape=box style="rounded,filled" fontname="DejaVu Sans" fontsize=12 fillcolor="#FFFFFF" color="#757575" margin="0.18,0.1"];
+edge [fontname="DejaVu Sans" fontsize=10 color="#555555"];
+subgraph cluster_app { label="Ứng dụng Android (Java + XML, MVVM)"; style="rounded,filled"; fillcolor="#FAFAFA"; color="#A50064"; fontsize=14; fontcolor="#7B0049";
+  ui [label="UI\nActivity + Adapter + ViewBinding\nOfficer: khách hàng, lãi suất, eKYC\nCustomer: lịch sử, vé phim/khách sạn, chatbot" fillcolor="#FCE4EC"];
+  base [label="BaseSecureActivity\nkiểm tra vai trò + khóa tài khoản" fillcolor="#ECEFF1"];
+  vm [label="ViewModel + LiveData\nCustomerList · TransactionHistory · Chat" fillcolor="#E3F2FD"];
+  repo [label="Repository\nCustomer · Kyc · Rate · Transaction\nServiceOrder · Chat · Seed · Audit" fillcolor="#E8F5E9"];
+  chat [label="Chat engines\nRuleBased · Gemini · Hybrid (cờ A/B)" fillcolor="#FFF8E1"];
+  router [label="DeepLinkRouter\nmở màn hình từ nút trong chat" fillcolor="#ECEFF1"];
+  base -> ui [dir=back arrowtail=empty arrowhead=none label=" kế thừa"];
+  ui -> vm [label=" quan sát"];
+  vm -> repo;
+  vm -> chat;
+  chat -> repo [label=" đọc số dư, lãi suất,\n giao dịch"];
+  ui -> router [style=dashed];
+}
+subgraph cluster_fb { label="Firebase (gói Spark)"; style="rounded,filled"; fillcolor="#FFF3E0"; color="#EF6C00"; fontsize=14;
+  auth [label="Authentication\nemail + mật khẩu"]; fs [label="Cloud Firestore\nusers · accounts · transactions · orders\nrates · kyc · audit_logs · login_lookup · branches"]; st [label="Cloud Storage\nảnh eKYC"]; rules [label="Security Rules\ntheo vai trò" shape=note fillcolor="#FFFDE7"];
+}
+gem [label="Gemini API\n(HTTPS REST, tùy chọn)" fillcolor="#E8EAF6" color="#3949AB"];
+repo -> fs [label=" đọc/ghi, batch,\n runTransaction"]; repo -> st [label=" upload/tải ảnh"]; ui -> auth [label=" đăng nhập" constraint=false]; repo -> auth [label=" tạo user\n(FirebaseApp phụ)"];
+chat -> gem [label=" khi bật Trợ lý AI\n(lỗi → về rule-based)" color="#3949AB"];
+rules -> fs [style=dashed arrowhead=none]; rules -> st [style=dashed arrowhead=none];
+}

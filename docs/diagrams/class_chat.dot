@@ -1,0 +1,57 @@
+digraph G { rankdir=TB; compound=true; newrank=true; fontname="DejaVu Sans"; nodesep=0.35; ranksep=0.7; splines=true;
+node [shape=plain fontname="DejaVu Sans" fontsize=10]; edge [fontname="DejaVu Sans" fontsize=9 color="#555555"];
+subgraph "cluster_Base" { label="Base"; style="rounded,filled"; fillcolor="#FAFAFA"; color="#BDBDBD"; fontsize=12;
+"BaseSecureActivity" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#ECEFF1"><B>BaseSecureActivity</B><BR/><I>«abstract»</I></TD></TR></TABLE>>];
+}
+subgraph "cluster_Customer UI" { label="Customer UI"; style="rounded,filled"; fillcolor="#FAFAFA"; color="#BDBDBD"; fontsize=12;
+"ChatActivity" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#FCE4EC"><B>ChatActivity</B></TD></TR></TABLE>>];
+}
+subgraph "cluster_Adapter" { label="Adapter"; style="rounded,filled"; fillcolor="#FAFAFA"; color="#BDBDBD"; fontsize=12;
+"ChatAdapter" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#F8BBD0"><B>ChatAdapter</B></TD></TR></TABLE>>];
+}
+subgraph "cluster_ViewModel" { label="ViewModel"; style="rounded,filled"; fillcolor="#FAFAFA"; color="#BDBDBD"; fontsize=12;
+"ChatViewModel" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#E3F2FD"><B>ChatViewModel</B></TD></TR><TR><TD ALIGN="LEFT" BORDER="0">+ getMessages()</TD></TR><TR><TD ALIGN="LEFT" BORDER="0">+ getTyping()</TD></TR><TR><TD ALIGN="LEFT" BORDER="0">+ getMode()</TD></TR><TR><TD ALIGN="LEFT" BORDER="0">+ isLlmAvailable()</TD></TR><TR><TD ALIGN="LEFT" BORDER="0">+ setLlmMode()</TD></TR><TR><TD ALIGN="LEFT" BORDER="0">…</TD></TR></TABLE>>];
+}
+subgraph "cluster_Repository" { label="Repository"; style="rounded,filled"; fillcolor="#FAFAFA"; color="#BDBDBD"; fontsize=12;
+"ChatRepository" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#E8F5E9"><B>ChatRepository</B></TD></TR><TR><TD ALIGN="LEFT" BORDER="0">+ loadRecent()</TD></TR><TR><TD ALIGN="LEFT" BORDER="0">+ save()</TD></TR></TABLE>>];
+"RateRepository" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#E8F5E9"><B>RateRepository</B></TD></TR><TR><TD ALIGN="LEFT" BORDER="0">+ loadRates()</TD></TR><TR><TD ALIGN="LEFT" BORDER="0">+ saveRates()</TD></TR></TABLE>>];
+"TransactionRepository" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#E8F5E9"><B>TransactionRepository</B></TD></TR><TR><TD ALIGN="LEFT" BORDER="0">+ loadByOwner()</TD></TR></TABLE>>];
+}
+subgraph "cluster_Chat" { label="Chat"; style="rounded,filled"; fillcolor="#FAFAFA"; color="#BDBDBD"; fontsize=12;
+"ChatEngine" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#FFF8E1"><B>ChatEngine</B><BR/><I>«interface»</I></TD></TR></TABLE>>];
+"RuleBasedChatEngine" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#FFF8E1"><B>RuleBasedChatEngine</B></TD></TR><TR><TD ALIGN="LEFT" BORDER="0">+ reply()</TD></TR></TABLE>>];
+"GeminiChatEngine" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#FFF8E1"><B>GeminiChatEngine</B></TD></TR><TR><TD ALIGN="LEFT" BORDER="0">+ isConfigured()</TD></TR><TR><TD ALIGN="LEFT" BORDER="0">+ reply()</TD></TR></TABLE>>];
+"HybridChatEngine" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#FFF8E1"><B>HybridChatEngine</B></TD></TR><TR><TD ALIGN="LEFT" BORDER="0">+ reply()</TD></TR></TABLE>>];
+"IntentMatcher" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#FFF8E1"><B>IntentMatcher</B></TD></TR><TR><TD ALIGN="LEFT" BORDER="0">+ match()</TD></TR><TR><TD ALIGN="LEFT" BORDER="0">+ normalize()</TD></TR></TABLE>>];
+"BotReply" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#FFF8E1"><B>BotReply</B></TD></TR></TABLE>>];
+"ChatPrefs" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#FFF8E1"><B>ChatPrefs</B></TD></TR><TR><TD ALIGN="LEFT" BORDER="0">+ getMode()</TD></TR><TR><TD ALIGN="LEFT" BORDER="0">+ setMode()</TD></TR></TABLE>>];
+"ChatActions" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#FFF8E1"><B>ChatActions</B></TD></TR><TR><TD ALIGN="LEFT" BORDER="0">+ isKnown()</TD></TR><TR><TD ALIGN="LEFT" BORDER="0">+ label()</TD></TR></TABLE>>];
+}
+subgraph "cluster_Model" { label="Model"; style="rounded,filled"; fillcolor="#FAFAFA"; color="#BDBDBD"; fontsize=12;
+"ChatMessage" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#F3E5F5"><B>ChatMessage</B></TD></TR></TABLE>>];
+}
+subgraph "cluster_Utils" { label="Utils"; style="rounded,filled"; fillcolor="#FAFAFA"; color="#BDBDBD"; fontsize=12;
+"DeepLinkRouter" [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4"><TR><TD BGCOLOR="#ECEFF1"><B>DeepLinkRouter</B></TD></TR><TR><TD ALIGN="LEFT" BORDER="0">+ register()</TD></TR><TR><TD ALIGN="LEFT" BORDER="0">+ open()</TD></TR></TABLE>>];
+}
+"ChatEngine" -> "BotReply" [arrowhead=vee style=dashed color="#9E9E9E"];
+"ChatEngine" -> "ChatMessage" [arrowhead=vee style=dashed color="#9E9E9E"];
+"GeminiChatEngine" -> "ChatEngine" [arrowhead=empty style=dashed];
+"GeminiChatEngine" -> "BotReply" [arrowhead=vee style=dashed color="#9E9E9E"];
+"GeminiChatEngine" -> "ChatMessage" [arrowhead=vee style=dashed color="#9E9E9E"];
+"HybridChatEngine" -> "ChatEngine" [arrowhead=empty style=dashed];
+"HybridChatEngine" -> "RuleBasedChatEngine" [arrowhead=none arrowtail=diamond dir=back];
+"HybridChatEngine" -> "GeminiChatEngine" [arrowhead=none arrowtail=diamond dir=back];
+"HybridChatEngine" -> "BotReply" [arrowhead=vee style=dashed color="#9E9E9E"];
+"HybridChatEngine" -> "ChatMessage" [arrowhead=vee style=dashed color="#9E9E9E"];
+"RuleBasedChatEngine" -> "ChatEngine" [arrowhead=empty style=dashed];
+"RuleBasedChatEngine" -> "BotReply" [arrowhead=vee style=dashed color="#9E9E9E"];
+"RuleBasedChatEngine" -> "ChatMessage" [arrowhead=vee style=dashed color="#9E9E9E"];
+"ChatRepository" -> "ChatMessage" [arrowhead=vee style=dashed color="#9E9E9E"];
+"ChatActivity" -> "BaseSecureActivity" [arrowhead=empty];
+"ChatActivity" -> "ChatViewModel" [arrowhead=vee];
+"ChatActivity" -> "ChatAdapter" [arrowhead=vee];
+"ChatAdapter" -> "ChatMessage" [arrowhead=vee];
+"ChatViewModel" -> "ChatRepository" [arrowhead=none arrowtail=diamond dir=back];
+"ChatViewModel" -> "ChatEngine" [arrowhead=vee];
+"ChatViewModel" -> "ChatMessage" [arrowhead=vee];
+}
