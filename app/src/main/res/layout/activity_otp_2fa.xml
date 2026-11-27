@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/tdt_surface"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="24dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="16dp">
+            <ImageButton android:id="@+id/button_otp_back" android:layout_width="44dp" android:layout_height="44dp" android:background="@android:color/transparent" android:contentDescription="Quay lại" android:padding="10dp" android:src="@drawable/ic_arrow_back" />
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:ellipsize="end" android:maxLines="1" android:text="Xác Thực Giao Dịch (2FA)" android:textColor="@color/tdt_on_surface" android:textSize="20sp" android:textStyle="bold" />
+            <ImageButton android:id="@+id/button_otp_security_help" android:layout_width="44dp" android:layout_height="44dp" android:background="@android:color/transparent" android:contentDescription="Trợ giúp và bảo mật" android:padding="10dp" android:src="@drawable/ic_shield_info" />
+            <FrameLayout android:layout_width="32dp" android:layout_height="32dp" android:background="@drawable/bg_otp_avatar">
+                <ImageView android:layout_width="20dp" android:layout_height="20dp" android:layout_gravity="center" android:src="@drawable/ic_person" android:tint="@color/tdt_on_primary" />
+            </FrameLayout>
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:paddingHorizontal="16dp">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center" android:orientation="vertical" android:paddingTop="12dp">
+                <FrameLayout android:layout_width="64dp" android:layout_height="64dp" android:background="@drawable/bg_shield_logo_container">
+                    <ImageView android:layout_width="32dp" android:layout_height="32dp" android:layout_gravity="center" android:src="@drawable/ic_shield_info" android:tint="@color/tdt_brand_primary" />
+                </FrameLayout>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="Xác thực bảo mật 2FA" android:textColor="@color/tdt_on_surface" android:textSize="20sp" android:textStyle="bold" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:gravity="center" android:text="Mã OTP gồm 6 chữ số đã được gửi tới số điện thoại 090***789 của bạn" android:textAlignment="center" android:textColor="@color/tdt_on_surface_variant" android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_otp_card"
+                android:elevation="2dp"
+                android:orientation="vertical"
+                android:padding="12dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CHUYỂN TIỀN TỚI"
+                    android:textColor="@color/tdt_on_surface_variant"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="TRẦN MINH QUÝ"
+                        android:textColor="@color/tdt_on_surface"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2.500.000 đ"
+                        android:textColor="@color/tdt_brand_primary"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:background="@drawable/bg_otp_waiting_badge"
+                    android:paddingHorizontal="8dp"
+                    android:paddingVertical="2dp"
+                    android:text="Miễn phí"
+                    android:textColor="@color/tdt_on_secondary_fixed"
+                    android:textSize="11sp" />
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:background="@drawable/bg_otp_card" android:elevation="2dp" android:gravity="center" android:orientation="vertical" android:padding="16dp">
+                <LinearLayout android:id="@+id/otp_digits" android:layout_width="match_parent" android:layout_height="56dp" android:gravity="center" android:orientation="horizontal">
+                    <TextView style="@style/Widget.Material3.Button.OutlinedButton" android:layout_width="0dp" android:layout_height="48dp" android:layout_marginEnd="4dp" android:layout_weight="1" android:text="" />
+                    <TextView style="@style/Widget.Material3.Button.OutlinedButton" android:layout_width="0dp" android:layout_height="48dp" android:layout_marginHorizontal="4dp" android:layout_weight="1" android:text="" />
+                    <TextView style="@style/Widget.Material3.Button.OutlinedButton" android:layout_width="0dp" android:layout_height="48dp" android:layout_marginHorizontal="4dp" android:layout_weight="1" android:text="" />
+                    <TextView style="@style/Widget.Material3.Button.OutlinedButton" android:layout_width="0dp" android:layout_height="48dp" android:layout_marginHorizontal="4dp" android:layout_weight="1" android:text="" />
+                    <TextView style="@style/Widget.Material3.Button.OutlinedButton" android:layout_width="0dp" android:layout_height="48dp" android:layout_marginHorizontal="4dp" android:layout_weight="1" android:text="" />
+                    <TextView style="@style/Widget.Material3.Button.OutlinedButton" android:layout_width="0dp" android:layout_height="48dp" android:layout_marginStart="4dp" android:layout_weight="1" android:text="" />
+                </LinearLayout>
+                <TextView android:id="@+id/text_otp_timer" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="Gửi lại mã sau 0:58" android:textColor="@color/tdt_on_surface_variant" android:textSize="12sp" />
+                <Button android:id="@+id/button_otp_resend" style="@style/Widget.TDT.Button.Primary" android:layout_width="wrap_content" android:layout_height="48dp" android:layout_marginTop="4dp" android:text="Gửi lại mã" android:visibility="gone" />
+            </LinearLayout>
+
+            <Button android:id="@+id/button_otp_confirm" style="@style/Widget.TDT.Button.Primary" android:layout_width="match_parent" android:layout_height="48dp" android:layout_marginTop="12dp" android:text="Xác nhận" />
+            <GridLayout android:id="@+id/keypad_otp" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:columnCount="3" android:rowCount="4" android:useDefaultMargins="true">
+                <Button android:layout_width="0dp" android:layout_height="48dp" android:layout_columnWeight="1" android:text="1" /><Button android:layout_width="0dp" android:layout_height="48dp" android:layout_columnWeight="1" android:text="2" /><Button android:layout_width="0dp" android:layout_height="48dp" android:layout_columnWeight="1" android:text="3" />
+                <Button android:layout_width="0dp" android:layout_height="48dp" android:layout_columnWeight="1" android:text="4" /><Button android:layout_width="0dp" android:layout_height="48dp" android:layout_columnWeight="1" android:text="5" /><Button android:layout_width="0dp" android:layout_height="48dp" android:layout_columnWeight="1" android:text="6" />
+                <Button android:layout_width="0dp" android:layout_height="48dp" android:layout_columnWeight="1" android:text="7" /><Button android:layout_width="0dp" android:layout_height="48dp" android:layout_columnWeight="1" android:text="8" /><Button android:layout_width="0dp" android:layout_height="48dp" android:layout_columnWeight="1" android:text="9" />
+                <ImageButton android:layout_width="0dp" android:layout_height="48dp" android:layout_columnWeight="1" android:background="@drawable/bg_otp_key_aux" android:contentDescription="Sinh trắc học" android:padding="12dp" android:src="@drawable/ic_fingerprint" /><Button android:layout_width="0dp" android:layout_height="48dp" android:layout_columnWeight="1" android:text="0" /><ImageButton android:id="@+id/button_otp_backspace" android:layout_width="0dp" android:layout_height="48dp" android:layout_columnWeight="1" android:background="@drawable/bg_otp_key_aux" android:contentDescription="Xóa" android:padding="12dp" android:src="@drawable/ic_backspace" />
+            </GridLayout>
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="20dp" android:gravity="center" android:text="Mã hóa E2EE 256-bit • TDT Shield™ PKI" android:textColor="@color/tdt_on_surface_variant" android:textSize="11sp" />
+        </LinearLayout>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

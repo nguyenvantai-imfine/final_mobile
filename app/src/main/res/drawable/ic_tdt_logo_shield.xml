@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="64dp"
+    android:height="64dp"
+    android:viewportWidth="64"
+    android:viewportHeight="64">
+    <!-- Outer Stylized Crest -->
+    <path
+        android:fillColor="@color/tdt_primary"
+        android:fillAlpha="0.08"
+        android:pathData="M32,4 L54,13.5 V29.5 C54,44.5 44.5,54.5 32,60 C19.5,54.5 10,44.5 10,29.5 V13.5 L32,4 Z" />
+    <!-- Inner Solid High-Security Shield Core -->
+    <path
+        android:fillColor="@color/tdt_primary"
+        android:pathData="M32,9 L49,16.5 V29 C49,41 41.5,49 32,54 C22.5,49 15,41 15,29 V16.5 L32,9 Z" />
+    <!-- Center Vault TDT Monogram Core -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M25,24 H39 V28 H34 V41 H30 V28 H25 V24 Z" />
+    <path
+        android:fillColor="@color/tdt_primary"
+        android:pathData="M30,33 a2,2 0 1,0 4,0 a2,2 0 1,0 -4,0" />
+</vector>

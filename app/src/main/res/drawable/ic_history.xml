@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <path
+        android:fillColor="@color/tdt_brand_primary_container"
+        android:pathData="M13,3a9,9 0 0,0 -9,9H1l3.89,3.89 0.07,0.14L9,12H6c0,-3.87 3.13,-7 7,-7 1.93,0 3.68,0.79 4.94,2.06l1.42,-1.42A8.954,8.954 0 0,0 13,3zM12,7c-2.76,0 -5,2.24 -5,5h2c0,-1.65 1.35,-3 3,-3s3,1.35 3,3 -1.35,3 -3,3c-1.31,0 -2.42,-0.83 -2.83,-2H9.17C9.58,17.3 10.83,19 12,19c2.76,0 5,-2.24 5,-5s-2.24,-5 -5,-5zM11,9h2v4h-2V9zM21,12l-3.89,-3.89 -0.07,-0.14L15,12h3c0,3.87 -3.13,7 -7,7 -1.93,0 -3.68,-0.79 -4.94,-2.06l-1.42,1.42A8.954,8.954 0 0,0 11,21a9,9 0 0,0 9,-9h2z" />
+
+</vector>

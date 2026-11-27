@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="44dp"
+    android:height="44dp"
+    android:viewportWidth="44"
+    android:viewportHeight="44">
+
+    <!-- Background circle track -->
+    <path
+        android:name="spinner_track"
+        android:fillColor="@android:color/transparent"
+        android:pathData="M22,4 A18,18 0 1,1 4,22 A18,18 0 1,1 22,4"
+        android:strokeColor="@color/tdt_on_primary_container"
+        android:strokeWidth="3.5" />
+
+    <!-- Animated arc -->
+    <path
+        android:name="spinner_arc"
+        android:fillColor="@android:color/transparent"
+        android:pathData="M22,4 A18,18 0 0,1 40,22"
+        android:strokeColor="@color/tdt_brand_primary"
+        android:strokeLineCap="round"
+        android:strokeWidth="3.5" />
+
+</vector>

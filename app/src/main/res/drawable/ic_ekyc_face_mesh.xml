@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="260dp"
+    android:viewportWidth="200"
+    android:viewportHeight="260">
+
+    <!-- Đường viền đầu & vai nét đứt -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M100,35 C65,35 45,70 45,118 C45,160 68,190 100,190 C132,190 155,160 155,118 C155,70 135,35 100,35 Z"
+        android:strokeColor="#66DEBEC8"
+        android:strokeWidth="1.5" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M40,230 C45,200 75,190 100,190 C125,190 155,200 160,230"
+        android:strokeColor="#66DEBEC8"
+        android:strokeWidth="1.5" />
+
+    <!-- Vùng mắt & mũi & miệng -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M70,102 Q82,96 94,102 M106,102 Q118,96 130,102"
+        android:strokeColor="#D9FFB0CF"
+        android:strokeWidth="1.5" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M100,95 L100,125 L94,130 L106,130"
+        android:strokeColor="#D9FFB0CF"
+        android:strokeWidth="1.2" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M84,156 Q100,162 116,156 M86,156 Q100,150 114,156"
+        android:strokeColor="#D9FFB0CF"
+        android:strokeWidth="1.5" />
+
+    <!-- Đường nối lưới sinh trắc học -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M82,100 L100,128 M118,100 L100,128 M100,128 L100,178 M64,125 L84,156 M136,125 L116,156 M82,72 L100,65 L118,72"
+        android:strokeColor="#80FFB0CF"
+        android:strokeWidth="0.9" />
+
+    <!-- Các điểm landmark trán, má, miệng -->
+    <path
+        android:fillColor="#FFB0CF"
+        android:pathData="M100,65 m-2.5,0 a2.5,2.5 0 1,0 5,0 a2.5,2.5 0 1,0 -5,0
+                          M82,72 m-2,0 a2,2 0 1,0 4,0 a2,2 0 1,0 -4,0
+                          M118,72 m-2,0 a2,2 0 1,0 4,0 a2,2 0 1,0 -4,0
+                          M100,128 m-2.5,0 a2.5,2.5 0 1,0 5,0 a2.5,2.5 0 1,0 -5,0
+                          M64,125 m-2,0 a2,2 0 1,0 4,0 a2,2 0 1,0 -4,0
+                          M136,125 m-2,0 a2,2 0 1,0 4,0 a2,2 0 1,0 -4,0
+                          M68,148 m-2,0 a2,2 0 1,0 4,0 a2,2 0 1,0 -4,0
+                          M132,148 m-2,0 a2,2 0 1,0 4,0 a2,2 0 1,0 -4,0
+                          M84,156 m-2,0 a2,2 0 1,0 4,0 a2,2 0 1,0 -4,0
+                          M116,156 m-2,0 a2,2 0 1,0 4,0 a2,2 0 1,0 -4,0" />
+
+    <!-- Điểm tâm mắt & cằm màu hồng nhấn -->
+    <path
+        android:fillColor="#FE4EA9"
+        android:pathData="M82,100 m-2.5,0 a2.5,2.5 0 1,0 5,0 a2.5,2.5 0 1,0 -5,0
+                          M118,100 m-2.5,0 a2.5,2.5 0 1,0 5,0 a2.5,2.5 0 1,0 -5,0
+                          M100,178 m-3,0 a3,3 0 1,0 6,0 a3,3 0 1,0 -6,0" />
+</vector>

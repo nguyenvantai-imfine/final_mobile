@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <gradient
+        android:angle="315"
+        android:startColor="@color/tdt_brand_primary_container"
+        android:centerColor="@color/tdt_secondary"
+        android:endColor="@color/tdt_promo_end" />
+    <corners android:radius="16dp" />
+</shape>

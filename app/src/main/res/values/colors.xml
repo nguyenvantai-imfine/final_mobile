@@ -47,6 +47,7 @@
     <!-- Functional & Semantic Tokens -->
     <color name="tdt_brand_primary">#A50064</color>
     <color name="tdt_brand_primary_pressed">#850050</color>
+    <color name="tdt_brand_dark">#4A002C</color>
     <color name="tdt_accent_active">#D82D8B</color>
     <color name="tdt_soft_highlight">#FCE4F1</color>
     <color name="tdt_neutral_bg">#F5F5F7</color>
@@ -91,4 +92,12 @@
     <color name="on_error_container">#410002</color>
 
     <color name="secondary_container">#FE4EA9</color>
+
+    <!-- Semantic Status & Badge Accents -->
+    <color name="tdt_emerald_light">#ECFDF5</color>
+    <color name="tdt_emerald_text">#047857</color>
+    <color name="tdt_emerald_accent">#6EE7B7</color>
+    <color name="tdt_amber_light">#FFFBEB</color>
+    <color name="tdt_amber_text">#B45309</color>
+    <color name="tdt_state_error">#BA1A1A</color>
 </resources>

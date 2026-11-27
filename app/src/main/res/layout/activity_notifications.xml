@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/tdt_surface">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:background="@color/tdt_surface"
+            android:elevation="2dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="8dp">
+            <ImageButton
+                android:id="@+id/button_notifications_back"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:background="@android:color/transparent"
+                android:contentDescription="Quay lại"
+                android:padding="10dp"
+                android:src="@drawable/ic_arrow_back" />
+            <ImageView
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:contentDescription="TDT Bank"
+                android:src="@drawable/ic_tdt_logo_shield" />
+            <Space android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" />
+            <FrameLayout
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@drawable/bg_circle_primary">
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_person"
+                    android:tint="@color/tdt_on_primary" />
+            </FrameLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/tdt_surface_container_lowest"
+            android:elevation="2dp"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingHorizontal="16dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Thông báo"
+                    android:textColor="@color/tdt_on_surface"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/text_notifications_unread_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/bg_chip_selected"
+                    android:paddingHorizontal="8dp"
+                    android:paddingVertical="3dp"
+                    android:text="2 mới"
+                    android:textColor="@color/tdt_brand_primary"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+                <Space android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" />
+                <Button
+                    android:id="@+id/button_notifications_mark_all_read"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:background="@android:color/transparent"
+                    android:text="Đánh dấu đã đọc"
+                    android:textColor="@color/tdt_secondary"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fillViewport="false"
+                android:scrollbars="none">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingBottom="12dp">
+                    <TextView android:id="@+id/chip_notifications_all" android:layout_width="wrap_content" android:layout_height="36dp" android:background="@drawable/bg_chip_selected" android:gravity="center" android:paddingHorizontal="16dp" android:text="Tất cả" android:textColor="@color/tdt_brand_primary" android:textSize="12sp" android:textStyle="bold" />
+                    <TextView android:id="@+id/chip_notifications_balance" android:layout_width="wrap_content" android:layout_height="36dp" android:layout_marginStart="8dp" android:background="@drawable/bg_chip_unselected" android:gravity="center" android:paddingHorizontal="16dp" android:text="Biến động số dư" android:textColor="@color/tdt_on_surface_variant" android:textSize="12sp" />
+                    <TextView android:id="@+id/chip_notifications_promotion" android:layout_width="wrap_content" android:layout_height="36dp" android:layout_marginStart="8dp" android:background="@drawable/bg_chip_unselected" android:gravity="center" android:paddingHorizontal="16dp" android:text="Khuyến mãi" android:textColor="@color/tdt_on_surface_variant" android:textSize="12sp" />
+                    <TextView android:id="@+id/chip_notifications_security" android:layout_width="wrap_content" android:layout_height="36dp" android:layout_marginStart="8dp" android:background="@drawable/bg_chip_unselected" android:gravity="center" android:paddingHorizontal="16dp" android:text="Bảo mật" android:textColor="@color/tdt_on_surface_variant" android:textSize="12sp" />
+                </LinearLayout>
+            </HorizontalScrollView>
+        </LinearLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:fillViewport="true">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingHorizontal="16dp"
+                android:paddingTop="12dp"
+                android:paddingBottom="96dp">
+
+                <com.google.android.material.card.MaterialCardView
+                    style="@style/Widget.TDT.Card"
+                    android:id="@+id/card_notification_income"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp">
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:padding="14dp">
+                        <FrameLayout android:layout_width="40dp" android:layout_height="40dp" android:background="@drawable/bg_circle_surface_low"><ImageView android:layout_width="22dp" android:layout_height="22dp" android:layout_gravity="center" android:rotation="135" android:src="@drawable/ic_arrow_forward" android:tint="@color/tdt_success" /></FrameLayout>
+                        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginStart="12dp" android:layout_weight="1" android:orientation="vertical"><LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center_vertical" android:orientation="horizontal"><TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Biến động số dư tài khoản Checking" android:textColor="@color/tdt_on_surface" android:textSize="16sp" android:textStyle="bold" /><View android:layout_width="10dp" android:layout_height="10dp" android:background="@drawable/bg_badge_verified" /></LinearLayout><TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:text="Tài khoản 1029384756 nhận +5.000.000 đ từ CTY TECH CORP. Số dư khả dụng: 45.850.000 đ" android:textColor="@color/tdt_on_surface_variant" android:textSize="12sp" /><LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:gravity="center_vertical" android:orientation="horizontal"><TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="+5.000.000 đ" android:textColor="@color/tdt_success" android:textSize="18sp" android:textStyle="bold" /><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="10:45 - Hôm nay" android:textColor="@color/tdt_on_surface_variant" android:textSize="11sp" /></LinearLayout></LinearLayout>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView style="@style/Widget.TDT.Card" android:id="@+id/card_notification_payment" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="10dp"><LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:padding="14dp"><FrameLayout android:layout_width="40dp" android:layout_height="40dp" android:background="@drawable/bg_circle_surface_low"><ImageView android:layout_width="22dp" android:layout_height="22dp" android:layout_gravity="center" android:rotation="-45" android:src="@drawable/ic_arrow_forward" android:tint="@color/tdt_error" /></FrameLayout><LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginStart="12dp" android:layout_weight="1" android:orientation="vertical"><LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center_vertical" android:orientation="horizontal"><TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Thanh toán hóa đơn tiền điện" android:textColor="@color/tdt_on_surface" android:textSize="16sp" android:textStyle="bold" /><View android:layout_width="10dp" android:layout_height="10dp" android:background="@drawable/bg_badge_verified" /></LinearLayout><TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:text="Thanh toán thành công EVN HCMC hóa đơn tháng 10. Số tiền -845.000 đ" android:textColor="@color/tdt_on_surface_variant" android:textSize="12sp" /><LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:gravity="center_vertical" android:orientation="horizontal"><TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="-845.000 đ" android:textColor="@color/tdt_on_surface" android:textSize="18sp" android:textStyle="bold" /><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="08:30 - Hôm nay" android:textColor="@color/tdt_on_surface_variant" android:textSize="11sp" /></LinearLayout></LinearLayout></LinearLayout></com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView style="@style/Widget.TDT.Card" android:id="@+id/card_notification_promotion" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="10dp" android:alpha="0.95"><LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:padding="14dp"><FrameLayout android:layout_width="40dp" android:layout_height="40dp" android:background="@drawable/bg_circle_surface_low"><ImageView android:layout_width="22dp" android:layout_height="22dp" android:layout_gravity="center" android:src="@drawable/ic_verified" android:tint="@color/tdt_brand_primary" /></FrameLayout><LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginStart="12dp" android:layout_weight="1" android:orientation="vertical"><TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Bạn có ưu đãi mới từ TDT Bank" android:textColor="@color/tdt_on_surface" android:textSize="16sp" android:textStyle="bold" /><TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:text="Khám phá các chương trình ưu đãi dành riêng cho chủ tài khoản TDT Bank." android:textColor="@color/tdt_on_surface_variant" android:textSize="12sp" /><TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:background="@color/tdt_surface_container_low" android:padding="8dp" android:text="TDT-CASHBACK20                                      Chi tiết →" android:textColor="@color/tdt_brand_primary" android:textSize="11sp" android:textStyle="bold" /><TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="Hôm qua                                                     Ưu đãi thẻ" android:textColor="@color/tdt_on_surface_variant" android:textSize="11sp" /></LinearLayout></LinearLayout></com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView style="@style/Widget.TDT.Card" android:id="@+id/card_notification_security" android:layout_width="match_parent" android:layout_height="wrap_content" android:alpha="0.95"><LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:padding="14dp"><FrameLayout android:layout_width="40dp" android:layout_height="40dp" android:background="@drawable/bg_circle_surface_low"><ImageView android:layout_width="22dp" android:layout_height="22dp" android:layout_gravity="center" android:src="@drawable/ic_security" android:tint="@color/tdt_brand_primary" /></FrameLayout><LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginStart="12dp" android:layout_weight="1" android:orientation="vertical"><TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Có đăng nhập từ thiết bị mới" android:textColor="@color/tdt_on_surface" android:textSize="16sp" android:textStyle="bold" /><TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:text="Hệ thống ghi nhận lượt đăng nhập từ một thiết bị mới vào lúc 14:20. Nếu không phải bạn, hãy đổi mật khẩu ngay." android:textColor="@color/tdt_on_surface_variant" android:textSize="12sp" /><TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="23/10/2023                                                  Bảo mật" android:textColor="@color/tdt_on_surface_variant" android:textSize="11sp" /></LinearLayout></LinearLayout></com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/button_notifications_ai_assistant"
+        android:layout_width="54dp"
+        android:layout_height="54dp"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/bg_circle_primary"
+        android:contentDescription="Trợ lý AI TDT Bank"
+        android:elevation="8dp"
+        android:padding="14dp"
+        android:src="@drawable/ic_support_agent" />
+</FrameLayout>
