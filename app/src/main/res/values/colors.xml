@@ -100,4 +100,7 @@
     <color name="tdt_amber_light">#FFFBEB</color>
     <color name="tdt_amber_text">#B45309</color>
     <color name="tdt_state_error">#BA1A1A</color>
+    <color name="tdt_amber">#F5A623</color>
+    <color name="tdt_amber_dark">#B45309</color>
+    <color name="tdt_camera_bg">#121316</color>
 </resources>
